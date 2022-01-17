@@ -1,9 +1,87 @@
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
 }
 
-html, body{
+:root{
+  --fontTitle: 'Work Sans', sans-serif;
+  --fontPrinc: 'Inter', sans-serif;
+  --main-bg-color: #6BB8AE;
+  --main-bg-yellow: #FCD232;
+  --main-bg-yellow-hover: #F7CC1F;
+  --main-text-white: white;
+  --main-text-yellow: #FCD232;
+  --main-text-yellow-hover: #F7CC1F;
+  --colorText: #0c0c0c;
+  --bg-yellow-light: rgba(252, 212, 50, 0.35);
+}
+
+.container{
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.clear{
+  clear: both;
+}
+
+.msg{
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+.back{
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('/images/back.png');
+  position: fixed;
+  bottom: 20px;
+  right: 50px;
+  cursor: pointer;
+}
+
+
+main{
+  padding-bottom: 40px;
+  position: relative;
+  width: calc(100% - 250px);
+  margin-left: 250px;
+  height: 100vh;
+  padding: 0 3%;
+}
+
+
+html,body{
   height: 100%;
+}
+
+@media screen and (max-width: 1060px){
+  main{
+      width: calc(100% - 210px);
+      margin-left: 210px;
+  }
+
+}
+
+@media screen and (max-width: 900px){
+  main{
+      top: 70px;
+      left: 0;
+      transition: 0.2s;
+      width: 100% ;
+      margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .back{
+      width: 35px;
+      height: 35px;
+      right: 30px;
+  }
 }
