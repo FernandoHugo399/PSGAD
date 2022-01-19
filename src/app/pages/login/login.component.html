@@ -6,12 +6,12 @@
 
     <form>
         <h2>Para continuar, faça seu login</h2>
-        <input type="email" name="email" class="input" placeholder="Login">
-        <div class="senha"><input type="password" id="password" name="senha" class="input" placeholder="Senha">
-            <button id="mostrar" type="button">Mostrar</button>
+        <input type="text" name="email" class="input" [(ngModel)]="user.email" placeholder="Login">
+        <div class="senha"><input type="password" id="password" name="password"  [(ngModel)]="user.password" class="input" placeholder="Senha" #inputPassword>
+            <button id="mostrar" type="button" (click)="showHidePass()" #buttonShowHide>Mostrar</button>
         </div>
         <a href="/recovery">Esqueceu a senha?</a>
-        <input type="button" value="Entrar">
+        <input type="button" value="Entrar" (click)="loginSubmit()">
     </form>
 </div>
 </div>
