@@ -2,12 +2,12 @@ import { ISuccessLogin, IFailedLogin } from './request.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Login } from '../pages/login.model';
+import { Login } from '../../pages/login/login.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class LoginService {
 
   baseUrl = 'http://localhost:3333/auth'
 
@@ -21,7 +21,9 @@ export class AuthService {
     console.log(res.token)
   }
 
-  LoginFailed(res: IFailedLogin): void {
+  LoginFailed(res: IFailedLogin, user: Login): void {
     console.log(res)
+    user.email = ''
+    user.password = ''
   }
 }

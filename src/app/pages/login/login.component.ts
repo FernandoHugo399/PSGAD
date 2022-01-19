@@ -1,7 +1,7 @@
-import { ISuccessLogin, IFailedLogin } from './../../services/request.model';
-import { AuthService } from './../../services/auth.service';
+import { LoginService } from './../../services/login/login.service';
+import { ISuccessLogin, IFailedLogin } from '../../services/login/request.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Login } from '../login.model';
+import { Login } from './login.model';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: ''
   }
 
-  constructor(private AuthService: AuthService) {
+  constructor(private LoginService: LoginService) {
   }
 
   ngOnInit(): void {
@@ -34,10 +34,10 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit(): void {
-    this.AuthService.login(this.user).subscribe((res)=>{
-      this.AuthService.LoginSuccessful(<ISuccessLogin>res)
+    this.LoginService.login(this.user).subscribe((res)=>{
+      this.LoginService.LoginSuccessful(<ISuccessLogin>res)
     }, (err: IFailedLogin)=>{
-      this.AuthService.LoginFailed(err)
+      this.LoginService.LoginFailed(err, this.user)
     })
   }
 }
