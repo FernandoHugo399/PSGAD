@@ -1,8 +1,8 @@
-import { ISuccessLogin, IFailedLogin } from './request.model';
+import { ISuccessLogin, IFailedLogin } from './login.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Login } from '../../pages/login/login.model';
+import { Login } from './login.model';
 import { Router } from '@angular/router';
 
 @Injectable({

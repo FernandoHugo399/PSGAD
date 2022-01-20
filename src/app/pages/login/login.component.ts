@@ -1,7 +1,6 @@
-import { LoginService } from './../../services/login/login.service';
-import { ISuccessLogin, IFailedLogin } from '../../services/login/request.model';
+import { LoginService } from './login.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Login } from './login.model';
+import { Login, IFailedLogin, ISuccessLogin } from './login.model';
 
 @Component({
   selector: 'app-login',
