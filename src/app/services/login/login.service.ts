@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Login } from '../../pages/login/login.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { Login } from '../../pages/login/login.model';
 export class LoginService {
   baseUrl = 'http://localhost:3333/auth'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private Router: Router) { }
 
 
   login(user: Login): Observable<Login>{
@@ -19,12 +20,13 @@ export class LoginService {
 
 
   LoginSuccessful(res: ISuccessLogin): void {
-    console.log(res)
+    localStorage.setItem('tokenPSGAD', res.token)
+    this.Router.navigate([''])
   }
 
 
   LoginFailed(res: IFailedLogin, user: Login): void {
-    console.log(res)
+    console.log(res.error.message)
     user.email = ''
     user.password = ''
   }

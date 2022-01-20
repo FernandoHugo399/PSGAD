@@ -5,7 +5,7 @@ export interface ISuccessLogin{
 
 export interface IFailedLogin{
   message?: string
-  error?: string
+  error?: {error: string, message: string}
   headers?: string
   status?: number
   ok?: boolean
