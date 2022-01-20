@@ -8,18 +8,20 @@ import { Login } from '../../pages/login/login.model';
   providedIn: 'root'
 })
 export class LoginService {
-
   baseUrl = 'http://localhost:3333/auth'
 
   constructor(private http: HttpClient) { }
+
 
   login(user: Login): Observable<Login>{
     return this.http.post<Login>(`${this.baseUrl}/login`, user)
   }
 
+
   LoginSuccessful(res: ISuccessLogin): void {
-    console.log(res.token)
+    console.log(res)
   }
+
 
   LoginFailed(res: IFailedLogin, user: Login): void {
     console.log(res)

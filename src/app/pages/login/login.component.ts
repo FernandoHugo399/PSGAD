@@ -17,16 +17,14 @@ export class LoginComponent implements OnInit {
     password: ''
   }
 
-  constructor(private LoginService: LoginService) {
-  }
+  constructor(private LoginService: LoginService) {  }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {  }
 
   showHidePass(): void{
-      if (this.inputPassword.nativeElement.attributes["type"].value === 'password') {
-        this.inputPassword.nativeElement.setAttribute('type', 'text')
-        this.buttonShowHide.nativeElement.innerText = 'Ocultar'
+    if (this.inputPassword.nativeElement.attributes["type"].value === 'password') {
+      this.inputPassword.nativeElement.setAttribute('type', 'text')
+      this.buttonShowHide.nativeElement.innerText = 'Ocultar'
     }else {
       this.inputPassword.nativeElement.setAttribute('type', 'password')
       this.buttonShowHide.nativeElement.innerText = 'Mostrar'
