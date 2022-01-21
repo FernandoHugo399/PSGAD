@@ -1,5 +1,3 @@
-import { IFailedAuth } from './../../services/auth/auth.model';
-import { AuthService } from './../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,13 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private AuthService: AuthService) { }
+  constructor() { }
 
   public ngOnInit(): void{
-    this.AuthService.verify().subscribe(()=>{
-    },(err: IFailedAuth)=>{
-      this.AuthService.VerifyFailed(err)
-    })
   }
 
 }
