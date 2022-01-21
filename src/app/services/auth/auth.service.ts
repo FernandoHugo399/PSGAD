@@ -8,10 +8,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthService implements IAuthService {
   baseUrl = 'http://localhost:3333/auth'
-  headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
   constructor(private http: HttpClient) { }
 
   verify():Observable<IAuth> {
-    return this.http.get<IAuth>(`${this.baseUrl}/`, {headers: this.headers})
+    const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
+    return this.http.get<IAuth>(`${this.baseUrl}/`, {headers: headers})
   }
 }

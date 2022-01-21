@@ -35,10 +35,8 @@ export class LoginComponent implements OnInit {
   loginSubmit(): void {
     this.LoginService.login(this.user).pipe(map((res)=>{
       if(!res.error){
-        console.log(res)
         this.LoginService.LoginSuccessful(res)
       } else {
-        console.log(res)
         this.LoginService.LoginFailed(res, this.user)
       }
     })).subscribe()
