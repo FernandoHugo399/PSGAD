@@ -1,17 +1,21 @@
-export interface Login {
+import { Observable } from "rxjs";
+
+export interface ILogin {
   email: string,
   password: string,
 }
 
-export interface ISuccessLogin{
+export interface IProcessLogin{
   message?: string
   token?: string
-}
-
-export interface IFailedLogin{
-  message?: string
-  error?: {error: string, message: string}
   headers?: string
   status?: number
   ok?: boolean
+  error?: string
+}
+
+export interface ILoginService {
+  login: (user: ILogin) => Observable<IProcessLogin>;
+  LoginSuccessful: (res: IProcessLogin) => void;
+  LoginFailed: (res: IProcessLogin, user: ILogin) => void;
 }

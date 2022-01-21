@@ -1,6 +1,7 @@
 import { LoginService } from './login.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Login, IFailedLogin, ISuccessLogin } from './login.model';
+import { ILogin } from './login.model';
+
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('buttonShowHide') buttonShowHide: { nativeElement:  HTMLButtonElement; };
   @ViewChild('inputPassword') inputPassword:  { nativeElement:  HTMLInputElement; };
 
-  user: Login = {
+  user: ILogin = {
     email: '',
     password: ''
   }
@@ -32,9 +33,14 @@ export class LoginComponent implements OnInit {
 
   loginSubmit(): void {
     this.LoginService.login(this.user).subscribe((res)=>{
-      this.LoginService.LoginSuccessful(<ISuccessLogin>res)
-    }, (err: IFailedLogin)=>{
-      this.LoginService.LoginFailed(err, this.user)
+      if(!res.error){
+        console.log(res)
+        this.LoginService.LoginSuccessful(res)
+      } else {
+        console.log(res)
+        this.LoginService.LoginFailed(res, this.user)
+      }
+
     })
   }
 }
