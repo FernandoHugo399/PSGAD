@@ -62,10 +62,10 @@
   display: none;
 }
 
-.menu-mobile-sidebar .icon-menu img{
-  width: 30px;
-  height: 30px;
+.menu-mobile-sidebar .icon-menu i{
+  font-size: 45px;
   cursor: pointer;
+  color: white;
 }
 
 .menu-mobile-sidebar .logo-menu img{
@@ -92,17 +92,15 @@
 .sidebar footer a{
   color: var(--main-text-white);
   text-decoration: none;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.sidebar footer img{
-  position: relative;
-  top: 8px;
-  width: 25px;
-  height: 25px;
 
+.sidebar footer a i {
+  margin-left: 4px;
 }
-
 
 @media screen and (max-width: 1060px){
   .sidebar{
