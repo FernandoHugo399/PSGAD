@@ -1,0 +1,163 @@
+.sidebar{
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 10px;
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  background-color: var(--main-bg-color);
+  z-index: 999;
+}
+
+.sidebar .img-logo{
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.sidebar .img-logo img{
+  width: 150px;
+}
+
+.sidebar .logo{
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar .logo img{
+  width: 100px;
+}
+
+.sidebar .menu-sidebar{
+  width: 100%;
+}
+
+.menu-sidebar ul li{
+  border-bottom: 1px solid white;
+  padding: 13px 0;
+  list-style-type: none;
+}
+
+.menu-sidebar ul li a{
+  color: var(--main-text-white);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 300;
+}
+.menu-sidebar ul li a:hover{
+  text-decoration: underline;
+}
+
+.menu-mobile-sidebar{
+  z-index: 999;
+  position: fixed;
+  padding: 0 5%;
+  width: 100%;
+  background-color: var(--main-bg-color);
+  height: 70px;
+  display: none;
+}
+
+.menu-mobile-sidebar .icon-menu img{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.menu-mobile-sidebar .logo-menu img{
+  width: 80px;
+}
+
+.left{
+  left: 0 !important;
+}
+.main-left{
+  left: 210px !important;
+}
+
+.sidebar footer{
+  color: var(--main-text-white);
+  width: 100%;
+  padding: 0 2%;
+  font-weight: 700;
+  text-align: center;
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.sidebar footer a{
+  color: var(--main-text-white);
+  text-decoration: none;
+
+}
+
+.sidebar footer img{
+  position: relative;
+  top: 8px;
+  width: 25px;
+  height: 25px;
+
+}
+
+
+@media screen and (max-width: 1060px){
+  .sidebar{
+      width: 210px;
+  }
+
+  .sidebar .img-logo img{
+      margin-top: 20px;
+      width: 140px;
+  }
+
+  .sidebar .logo img{
+      width: 90px;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .sidebar{
+      top: 70px;
+      left: -210px;
+      transition: 0.2s;
+      height: calc(100% - 70px);
+  }
+
+  .menu-mobile-sidebar{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .sidebar{
+      width: 210px;
+  }
+
+  .sidebar .img-logo img{
+      margin-top: 20px;
+      width: 130px;
+  }
+
+  .sidebar .logo img{
+      width: 85px;
+  }
+
+  .menu-sidebar ul li{
+      padding: 10px 0;
+  }
+
+  .menu-sidebar ul li a{
+      font-size: 14px;
+  }
+
+  .sidebar footer{
+      font-size: 18px;
+      margin: 16px 0;
+  }
+}

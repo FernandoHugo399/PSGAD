@@ -6,11 +6,11 @@ import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {
-    'path': 'login',
+    path: 'login',
     component: LoginComponent
   },
   {
-    'path': '',
+    path: '',
     component: HomeComponent,
     canActivate: [IsAuthenticatedGuard]
   }
