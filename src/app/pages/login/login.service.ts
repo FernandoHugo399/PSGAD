@@ -18,7 +18,7 @@ export class LoginService implements ILoginService {
   }
 
   LoginSuccessful(res: IProcessLogin): void {
-    localStorage.setItem('tokenPSGAD', res.token)
+    localStorage.setItem('token', res.token)
     this.Router.navigate([''])
   }
 

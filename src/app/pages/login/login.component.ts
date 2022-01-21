@@ -1,6 +1,7 @@
 import { LoginService } from './login.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ILogin } from './login.model';
+import { map } from 'rxjs';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit(): void {
-    this.LoginService.login(this.user).subscribe((res)=>{
+    this.LoginService.login(this.user).pipe(map((res)=>{
       if(!res.error){
         console.log(res)
         this.LoginService.LoginSuccessful(res)
@@ -40,7 +41,6 @@ export class LoginComponent implements OnInit {
         console.log(res)
         this.LoginService.LoginFailed(res, this.user)
       }
-
-    })
+    })).subscribe()
   }
 }
