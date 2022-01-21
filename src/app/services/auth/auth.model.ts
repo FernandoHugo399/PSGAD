@@ -1,11 +1,8 @@
-export interface ISuccessAuth{
+export interface IAuth{
   message?: string
-}
-
-export interface IFailedAuth{
-  message?: string
-  error?: {error: string, message: string}
+  error?: string
   headers?: string
   status?: number
   ok?: boolean
+  authError?: string
 }
