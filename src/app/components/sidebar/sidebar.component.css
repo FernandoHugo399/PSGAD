@@ -72,13 +72,6 @@
   width: 80px;
 }
 
-.left{
-  left: 0 !important;
-}
-.main-left{
-  left: 210px !important;
-}
-
 .sidebar footer{
   color: var(--main-text-white);
   width: 100%;
