@@ -1,3 +1,4 @@
+import { SidebarService } from './sidebar.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
@@ -6,11 +7,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
+  @ViewChild('sidebar') sidebar: {nativeElement: HTMLDivElement}
+  constructor(private SidebarService: SidebarService) { }
 
   ngOnInit(): void {
 
   }
 
+  showHideMenu(): void {
+    this.SidebarService.showHideMenu(this.sidebar.nativeElement)
+  }
 }
