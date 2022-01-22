@@ -22,9 +22,18 @@ export class LoginService implements ILoginService {
     this.Router.navigate([''])
   }
 
-
   LoginFailed(res: IProcessLogin, user: ILogin): void {
     user.email = ''
     user.password = ''
+  }
+
+  showHidePass (btn: HTMLButtonElement, inp: HTMLInputElement): void{
+    if ( inp.attributes["type"].value === 'password') {
+      inp.setAttribute('type', 'text')
+      btn.innerText = 'Ocultar'
+    }else {
+      inp.setAttribute('type', 'password')
+      btn.innerText = 'Mostrar'
+      }
   }
 }

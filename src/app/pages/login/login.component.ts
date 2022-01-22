@@ -23,13 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {  }
 
   showHidePass(): void{
-    if (this.inputPassword.nativeElement.attributes["type"].value === 'password') {
-      this.inputPassword.nativeElement.setAttribute('type', 'text')
-      this.buttonShowHide.nativeElement.innerText = 'Ocultar'
-    }else {
-      this.inputPassword.nativeElement.setAttribute('type', 'password')
-      this.buttonShowHide.nativeElement.innerText = 'Mostrar'
-      }
+    this.LoginService.showHidePass(this.buttonShowHide.nativeElement, this.inputPassword.nativeElement)
   }
 
   loginSubmit(): void {
