@@ -12,6 +12,6 @@ export class AuthService implements IAuthService {
 
   verify():Observable<IAuth> {
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
-    return this.http.get<IAuth>(`${this.baseUrl}/auth'`, {headers: headers})
+    return this.http.get<IAuth>(`${this.baseUrl}/auth`, {headers: headers})
   }
 }

@@ -1,3 +1,4 @@
+import { IOrders } from './home.model';
 import { HomeService } from './home.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private orders: any[];
+  orders: IOrders;
+  haveOrders: boolean = true;
 
   constructor(private HomeService: HomeService) { }
 
   public ngOnInit(): void{
     this.HomeService.pendingOrders().subscribe((res)=>{
-      console.log(res)
+      this.orders = res
+
+      if(this.orders.length === 0){
+        this.haveOrders = false
+      }
     })
   }
 

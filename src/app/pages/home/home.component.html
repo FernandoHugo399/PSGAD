@@ -7,9 +7,7 @@
     <div class="title"><h2>Compras pendentes</h2></div>
   </div> <!-- compras -->
 
- <!--  <div class="sem-pedidos">Não há nenhum pedido pendente</div> -->
-
-  <table class="table-pedidos">
+  <table class="table-pedidos" *ngIf="haveOrders; else noOrders">
     <thead>
       <th>ID</th>
       <th>Nome do cliente</th>
@@ -24,6 +22,10 @@
       <td>R$ 14,90</td>
     </tbody>
   </table> <!-- table-pedidos -->
+
+  <ng-template #noOrders>
+    <div class="sem-pedidos">Não há nenhum pedido pendente</div>
+  </ng-template>
 
 </div> <!-- main-home -->
 </main>
