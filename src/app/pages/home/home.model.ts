@@ -3,9 +3,10 @@ export interface IOrders {
   pedidos: {
     id_pedido: number,
     nome: string,
-    data_pedido: Date,
+    data_pedido: string,
     valor_total: number,
-    status: string
+    status: string,
+    formattedTime: string
   }[]
 }
 

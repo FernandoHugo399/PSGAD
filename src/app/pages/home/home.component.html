@@ -18,7 +18,7 @@
     <tbody *ngFor="let order of orders.pedidos">
       <td>#{{order.id_pedido}}</td>
       <td>{{order.nome}}</td>
-      <td>{{order.data_pedido}}</td>
+      <td>{{order.formattedTime}}</td>
       <td>R$ {{order.valor_total}}</td>
     </tbody>
   </table> <!-- table-pedidos -->
