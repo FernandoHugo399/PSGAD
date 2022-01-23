@@ -1,3 +1,4 @@
+import { HomeService } from './home.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  private orders: any[];
 
-  constructor() { }
+  constructor(private HomeService: HomeService) { }
 
   public ngOnInit(): void{
+    this.HomeService.pendingOrders().subscribe((res)=>{
+      console.log(res)
+    })
   }
 
 }
