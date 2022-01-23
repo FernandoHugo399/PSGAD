@@ -6,7 +6,7 @@ export interface IOrders {
     data_pedido: Date,
     valor_total: number,
     status: string
-  }
+  }[]
 }
 
 export interface IHomeService {

@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   orders: IOrders;
-  haveOrders: boolean = true;
+  haveOrders: boolean;
 
   constructor(private HomeService: HomeService) { }
 
@@ -17,7 +17,9 @@ export class HomeComponent implements OnInit {
     this.HomeService.pendingOrders().subscribe((res)=>{
       this.orders = res
 
-      if(this.orders.length === 0){
+      if(this.orders.length !== 0){
+        this.haveOrders = true
+      } else {
         this.haveOrders = false
       }
     })

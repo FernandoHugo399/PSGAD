@@ -15,11 +15,11 @@
       <th>Valor Total</th>
     </thead>
 
-    <tbody>
-      <td>#243</td>
-      <td>Patrick</td>
-      <td>2 meses</td>
-      <td>R$ 14,90</td>
+    <tbody *ngFor="let order of orders.pedidos">
+      <td>#{{order.id_pedido}}</td>
+      <td>{{order.nome}}</td>
+      <td>{{order.data_pedido}}</td>
+      <td>R$ {{order.valor_total}}</td>
     </tbody>
   </table> <!-- table-pedidos -->
 
