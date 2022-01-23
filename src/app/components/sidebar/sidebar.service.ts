@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { ISidebarService } from './sidebar.model';
 
@@ -6,7 +7,7 @@ import { ISidebarService } from './sidebar.model';
 })
 export class SidebarService implements ISidebarService {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   showHideMenu(sidebar: HTMLDivElement): void {
     const main = document.querySelectorAll('main')[0]
@@ -27,5 +28,10 @@ export class SidebarService implements ISidebarService {
         main.classList.add('main-left')
         sidebar.classList.add('left')
     }
+  }
+
+  logout(): void{
+    localStorage.setItem('token', 'null')
+    this.router.navigate(['login'])
   }
 }

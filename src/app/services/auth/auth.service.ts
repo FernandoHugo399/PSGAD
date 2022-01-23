@@ -7,11 +7,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService implements IAuthService {
-  baseUrl = 'http://localhost:3333/auth'
+  baseUrl = 'http://localhost:3333'
   constructor(private http: HttpClient) { }
 
   verify():Observable<IAuth> {
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
-    return this.http.get<IAuth>(`${this.baseUrl}/`, {headers: headers})
+    return this.http.get<IAuth>(`${this.baseUrl}/auth'`, {headers: headers})
   }
 }

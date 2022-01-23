@@ -17,4 +17,8 @@ export class SidebarComponent implements OnInit {
   showHideMenu(): void {
     this.SidebarService.showHideMenu(this.sidebar.nativeElement)
   }
+
+  logout(): void {
+    this.SidebarService.logout()
+  }
 }
