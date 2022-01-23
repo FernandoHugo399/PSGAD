@@ -1,0 +1,83 @@
+.main-ajuda{
+  width: 100%;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-ajuda .title {
+  width: 100%;
+}
+
+
+.main-ajuda .title h1{
+  font-weight: 500;
+  font-size: 40px;
+  padding-bottom: 100px;
+}
+
+
+.main-ajuda .title h2{
+  padding-top: 10px;
+  font-weight: 400;
+  font-size: 36px;
+  padding-bottom: 6px;
+}
+
+.main-ajuda .contato{
+  width: 100%;
+}
+
+.main-ajuda .contato p{
+  padding: 1px;
+}
+
+.main-ajuda #dynahash-ajuda{
+  width: 100%;
+  max-width: 900px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+@media screen and (max-width:900px){
+  .main-ajuda .title {
+      text-align: center;
+  }
+
+  .main-ajuda .contato{
+      text-align: center;
+  }
+}
+
+@media screen and (max-width:900px){
+  .main-ajuda .title {
+      text-align: center;
+  }
+
+  .main-ajuda .title h1{
+      text-align: center;
+      padding-bottom: 50px;
+  }
+
+  .main-ajuda .contato{
+      text-align: center;
+  }
+}
+
+@media screen and (max-width:440px){
+  .main-ajuda .title h1{
+      font-size: 34px;
+      padding-bottom: 30px;
+  }
+
+  .main-ajuda .title h2{
+      font-size: 30px;
+      padding-bottom: 5px;
+  }
+
+  .main-ajuda .contato p{
+      font-size: 15px;
+  }
+}

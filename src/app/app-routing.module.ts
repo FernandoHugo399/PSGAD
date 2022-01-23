@@ -1,3 +1,4 @@
+import { HelpComponent } from './pages/help/help.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { IsAuthenticatedGuard } from './services/auth/is-authenticated.guard';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [IsAuthenticatedGuard]
+  },
+  {
+    path: 'help',
+    component: HelpComponent,
     canActivate: [IsAuthenticatedGuard]
   },
   {

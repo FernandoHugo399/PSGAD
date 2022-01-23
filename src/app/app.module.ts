@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Page404Component } from './pages/page404/page404.component';
+import { HelpComponent } from './pages/help/help.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { Page404Component } from './pages/page404/page404.component';
     LoginComponent,
     HomeComponent,
     SidebarComponent,
-    Page404Component
+    Page404Component,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
