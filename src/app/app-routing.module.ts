@@ -1,3 +1,4 @@
+import { Page404Component } from './pages/page404/page404.component';
 import { IsAuthenticatedGuard } from './services/auth/is-authenticated.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,6 +14,10 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     canActivate: [IsAuthenticatedGuard]
+  },
+  {
+    path: '**',
+    component: Page404Component
   }
 ];
 
