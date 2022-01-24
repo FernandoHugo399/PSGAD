@@ -1,7 +1,7 @@
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { catchError, empty, map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -21,6 +21,9 @@ export class IsAuthenticatedGuard implements CanActivate {
       }
 
       return true
+    })).pipe(catchError((err)=>{
+      this.Router.navigate(['login'])
+      return empty()
     }))
   }
 
