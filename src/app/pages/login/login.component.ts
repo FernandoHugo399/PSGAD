@@ -1,7 +1,8 @@
+import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ILogin } from './login.model';
-import { map } from 'rxjs';
+import { ILogin, IProcessLogin } from './login.model';
+import { map, catchError, empty } from 'rxjs';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     password: ''
   }
 
-  constructor(private LoginService: LoginService) {  }
+  constructor(private LoginService: LoginService, private Router: Router) {  }
 
   ngOnInit(): void {  }
 
@@ -33,6 +34,9 @@ export class LoginComponent implements OnInit {
       } else {
         this.LoginService.LoginFailed(res, this.user)
       }
+    })).pipe(catchError((err: IProcessLogin)=>{
+      this.LoginService.LoginFailed(err, this.user)
+      return empty()
     })).subscribe()
   }
 }

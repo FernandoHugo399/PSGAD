@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { IOrders } from './home.model';
 import { HomeService } from './home.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
   orders: IOrders;
   haveOrders: boolean;
 
-  constructor(private HomeService: HomeService) { }
+  constructor(private HomeService: HomeService, private Router: Router) { }
 
   public ngOnInit(): void{
     this.HomeService.pendingOrders().subscribe((res)=>{
@@ -22,6 +23,8 @@ export class HomeComponent implements OnInit {
       } else {
         this.haveOrders = false
       }
+    }, (err)=>{
+      this.Router.navigate(['login'])
     })
   }
 
