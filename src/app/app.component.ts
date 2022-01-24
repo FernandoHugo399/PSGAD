@@ -1,3 +1,4 @@
+import { LoadingService } from './services/loading/loading.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  loading$ = this.loader.loading$
+
+  constructor(private loader: LoadingService) {}
 }
