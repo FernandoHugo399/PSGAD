@@ -1,3 +1,5 @@
+
+import { Observable } from 'rxjs';
 export interface IOrders {
   length: number
   pedidos: {
@@ -11,5 +13,5 @@ export interface IOrders {
 }
 
 export interface IHomeService {
-
+  pendingOrders: ()=> Observable<IOrders>
 }

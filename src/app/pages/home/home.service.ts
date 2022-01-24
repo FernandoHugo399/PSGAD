@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IOrders } from './home.model';
+import { IOrders, IHomeService } from './home.model';
 import { Observable, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HomeService {
+export class HomeService implements IHomeService{
   baseURL = 'http://localhost:3333'
 
   constructor(private http: HttpClient) { }
