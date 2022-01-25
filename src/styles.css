@@ -27,12 +27,6 @@
   clear: both;
 }
 
-.msg{
-  width: 100%;
-  text-align: center;
-  display: block;
-}
-
 .back{
   width: 40px;
   height: 40px;
@@ -43,6 +37,15 @@
   bottom: 20px;
   right: 50px;
   cursor: pointer;
+}
+
+.errorMessage{
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(216, 25, 25, 0.856);
 }
 
 

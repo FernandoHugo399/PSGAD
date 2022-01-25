@@ -1,3 +1,4 @@
+import { CatalogoComponent } from './../../pages/catalogo/catalogo.component';
 import { HelpComponent } from './../../pages/help/help.component';
 import { IsAuthenticatedGuard } from './../../services/auth/is-authenticated.guard';
 import { HomeComponent } from './../../pages/home/home.component';
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: 'help',
     component: HelpComponent,
+    canActivate: [IsAuthenticatedGuard]
+  },
+  {
+    path: 'catalogo',
+    component: CatalogoComponent,
     canActivate: [IsAuthenticatedGuard]
   }
 ];

@@ -24,4 +24,5 @@ export interface ILoginService {
 
 export default class GlobalVarsLogin {
   public static asMessageError: string
+  public static baseURL: string = 'http://localhost:3333'
 }

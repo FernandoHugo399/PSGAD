@@ -1,3 +1,4 @@
+import GlobalVarsLogin  from 'src/app/pages/login/login.model';
 import { IProcessLogin, ILogin, ILoginService } from './login.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,13 +9,13 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService implements ILoginService {
-  baseUrl = 'http://localhost:3333/auth'
+  baseUrl =  GlobalVarsLogin.baseURL
 
   constructor(private http: HttpClient, private Router: Router) { }
 
 
   login(user: ILogin): Observable<IProcessLogin>{
-    return this.http.post<IProcessLogin>(`${this.baseUrl}/login`, user)
+    return this.http.post<IProcessLogin>(`${this.baseUrl}/auth/login`, user)
   }
 
   LoginSuccessful(res: IProcessLogin): void {

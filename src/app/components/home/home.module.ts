@@ -1,3 +1,4 @@
+import { CatalogoComponent } from './../../pages/catalogo/catalogo.component';
 import { HomeComponent } from './../../pages/home/home.component';
 import { HelpComponent } from './../../pages/help/help.component';
 import { SidebarComponent } from './../sidebar/sidebar.component';
@@ -10,7 +11,8 @@ import { HomeRoutingModule } from './home-routing.module';
   declarations: [
     SidebarComponent,
     HelpComponent,
-    HomeComponent
+    HomeComponent,
+    CatalogoComponent
   ],
   imports: [
     CommonModule,

@@ -11,7 +11,7 @@
         <div class="senha"><input type="password" name="password"  [(ngModel)]="user.password" class="input" placeholder="Senha" #inputPassword>
             <button id="mostrar" type="button" (click)="showHidePass()" #buttonShowHide>Mostrar</button>
         </div>
-        <a href="/recovery">Esqueceu a senha?</a>
+        <a routerLink="/recovery">Esqueceu a senha?</a>
         <input type="submit" value="Entrar" (click)="loginSubmit()">
     </form>
 </div>

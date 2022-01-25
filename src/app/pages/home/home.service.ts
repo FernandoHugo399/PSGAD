@@ -1,3 +1,4 @@
+import  GlobalVarsLogin  from 'src/app/pages/login/login.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IOrders, IHomeService } from './home.model';
 import { Observable, tap } from 'rxjs';
@@ -7,7 +8,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HomeService implements IHomeService{
-  baseURL = 'http://localhost:3333'
+  baseURL = GlobalVarsLogin.baseURL
 
   constructor(private http: HttpClient) { }
 

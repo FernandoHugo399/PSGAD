@@ -1,3 +1,4 @@
+import GlobalVarsLogin from 'src/app/pages/login/login.model';
 import { IAuth, IAuthService } from './auth.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService implements IAuthService {
-  baseUrl = 'http://localhost:3333'
+  baseUrl = GlobalVarsLogin.baseURL
   constructor(private http: HttpClient) { }
 
   verify():Observable<IAuth> {
