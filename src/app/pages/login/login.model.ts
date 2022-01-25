@@ -21,3 +21,7 @@ export interface ILoginService {
   LoginFailed: (res: IProcessLogin, user: ILogin) => void;
   showHidePass: (btn: HTMLButtonElement, inp: HTMLInputElement) => void;
 }
+
+export default class GlobalVarsLogin {
+  public static asMessageError: string
+}

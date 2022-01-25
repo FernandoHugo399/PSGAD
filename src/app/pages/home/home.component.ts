@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { IOrders } from './home.model';
 import { HomeService } from './home.service';
 import { Component, OnInit } from '@angular/core';
+import GlobalVarsLogin from '../login/login.model';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
         this.haveOrders = false
       }
     }, (err)=>{
+      GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao efetuar a conexão'
       this.Router.navigate(['login'])
     })
   }

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { catchError, empty, map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { IProcessLogin } from 'src/app/pages/login/login.model';
+import GlobalVarsLogin from 'src/app/pages/login/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,8 @@ export class IsAuthenticatedGuard implements CanActivate {
       }
 
       return true
-    })).pipe(catchError((err)=>{
+    })).pipe(catchError((err:IProcessLogin)=>{
+      GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao efetuar a conexão'
       this.Router.navigate(['login'])
       return empty()
     }))
