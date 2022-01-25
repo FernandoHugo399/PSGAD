@@ -15,7 +15,7 @@ export class CatalogoService implements ICatalogoService {
 
   allProducts(): Observable<Product>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
-    return this.http.get<Product>(`${this.baseURL}/catalogo`, {headers: headers});
+    return this.http.get<Product>(`${this.baseURL}/product`, {headers: headers});
   }
 
 }

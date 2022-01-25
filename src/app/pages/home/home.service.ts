@@ -1,7 +1,8 @@
+import { Router } from '@angular/router';
 import  GlobalVarsLogin  from 'src/app/pages/login/login.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IOrders, IHomeService } from './home.model';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, catchError, empty } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Injectable } from '@angular/core';
 export class HomeService implements IHomeService{
   baseURL = GlobalVarsLogin.baseURL
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private Router: Router) { }
 
   pendingOrders(): Observable<IOrders> {
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
@@ -58,6 +59,10 @@ export class HomeService implements IHomeService{
           }
         }
       }
+    })).pipe(catchError((err)=>{
+      GlobalVarsLogin.asMessageError = 'Ocorreu um erro interno'
+      this.Router.navigate(['login'])
+      return empty()
     }))
   }
 
