@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       }
     })).pipe(catchError((err: IProcessLogin)=>{
       console.log(err)
-      this.errorMessage = err.statusText
+      this.errorMessage = 'Não foi possível conectar ao servidor'
       this.LoginService.LoginFailed(err, this.user)
       return empty()
     })).subscribe()
