@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ILogin, IProcessLogin } from './login.model';
+import { ILogin, IProcessLogin} from './login.model';
 import { map, catchError, empty } from 'rxjs';
 import GlobalVarsLogin from './login.model';
 
@@ -19,11 +19,13 @@ export class LoginComponent implements OnInit {
     password: ''
   }
 
-  public errorMessage: string | undefined = GlobalVarsLogin.asMessageError
+  public errorMessage: string | undefined = GlobalVarsLogin.asMessageError;
 
   constructor(private LoginService: LoginService, private Router: Router) {  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    GlobalVarsLogin.asMessageError = ''
+  }
 
   showHidePass(): void{
     this.LoginService.showHidePass(this.buttonShowHide.nativeElement, this.inputPassword.nativeElement)
@@ -32,7 +34,6 @@ export class LoginComponent implements OnInit {
   loginSubmit(): void {
     this.LoginService.login(this.user).pipe(map((res)=>{
       if(!res.error){
-        GlobalVarsLogin.asMessageError = ''
         this.LoginService.LoginSuccessful(res)
       } else {
         this.errorMessage = res.message

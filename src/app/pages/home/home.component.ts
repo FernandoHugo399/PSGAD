@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
         this.haveOrders = false
       }
     }, (err)=>{
-      GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao efetuar a conexão'
+      GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao carregar a página principal'
       this.Router.navigate(['login'])
     })
   }
