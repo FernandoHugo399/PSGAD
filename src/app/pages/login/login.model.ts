@@ -12,6 +12,7 @@ export interface IProcessLogin{
   status?: number
   ok?: boolean
   error?: string
+  statusText?: string
 }
 
 export interface ILoginService {

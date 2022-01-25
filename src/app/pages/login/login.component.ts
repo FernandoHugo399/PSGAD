@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
     password: ''
   }
 
+  public errorMessage: string | boolean;
+
   constructor(private LoginService: LoginService, private Router: Router) {  }
 
   ngOnInit(): void {  }
@@ -32,9 +34,12 @@ export class LoginComponent implements OnInit {
       if(!res.error){
         this.LoginService.LoginSuccessful(res)
       } else {
+        this.errorMessage = res.message
         this.LoginService.LoginFailed(res, this.user)
       }
     })).pipe(catchError((err: IProcessLogin)=>{
+      console.log(err)
+      this.errorMessage = err.statusText
       this.LoginService.LoginFailed(err, this.user)
       return empty()
     })).subscribe()
