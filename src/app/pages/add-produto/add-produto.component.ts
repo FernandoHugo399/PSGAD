@@ -12,16 +12,7 @@ export class AddProdutoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /* readURL(input: any) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#file_upload')
-                .attr('src', e.target.result);
-        };
-        reader.readAsDataURL(input.files[0]);
-
-    }
-  } */
+  readURL(){
+    console.log('ok')
+  }
 }

@@ -18,17 +18,17 @@
 }
 
 .add-produto .add-imagem{
-  padding: 0 2%;
   display: flex;
   justify-content: center;
   margin: 0 auto;
   width: 100%;
-  height: 350px;
+  max-height: 350px;
+  height: 60vw;
   background-image: url('/assets/images/bg-xadrez.png');
 }
 
 .add-produto .add-imagem .img{
-  width: 80%;
+  width: 96%;
   max-width: 445px;
   height: 100%;
   background-color: #ccc;
@@ -192,10 +192,6 @@
       font-size: 18px;
   }
 
-  .add-produto .add-imagem .img{
-      max-width: 365px;
-  }
-
   .add-produto .add-form .flex-item input{
       height: 40px;
   }
@@ -226,10 +222,6 @@
   .add-produto .title h3{
       text-align: center;
   }
-
-  .add-produto .add-imagem .img{
-      max-width: 320px;
-  }
 }
 
 @media screen and (max-width:500px){
@@ -241,22 +233,19 @@
       font-size: 15px;
   }
 
-  .add-produto .add-imagem{
-      height: 300px;
-  }
-
   .add-produto .add-imagem .img .close i{
     font-size: 25px;
-  }
-
-  .add-produto .add-imagem .img{
-      max-width: 300px;
   }
 
   .add-produto .add-form .flex-item{
       justify-content: space-evenly;
   }
 
+  .add-produto label {
+    font-size: 13px;
+    padding: 8px 3px;
+    width: 120px;
+  }
 
   .add-produto .add-form .flex-item .w30{
       width: 45%;
