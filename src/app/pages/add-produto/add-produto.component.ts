@@ -1,5 +1,8 @@
+import { Router } from '@angular/router';
+import { ICategoria } from './add-produto.model';
 import { AddProdutoService } from './add-produto.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import GlobalVarsLogin from '../login/login.model';
 
 @Component({
   selector: 'app-add-produto',
@@ -9,9 +12,22 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class AddProdutoComponent implements OnInit {
   @ViewChild('previewImage') previewImage: {nativeElement: HTMLImageElement}
   @ViewChild('inpFiles') inpFiles: {nativeElement: HTMLInputElement}
-  constructor(private AddProdutoService: AddProdutoService) { }
+  constructor(private AddProdutoService: AddProdutoService, private router: Router) { }
+
+  public errorMessage = GlobalVarsLogin.asMessageError
+  public categorias: ICategoria;
+
 
   ngOnInit(): void {
+    GlobalVarsLogin.asMessageError = ''
+    this.AddProdutoService.getCategorias().subscribe((res)=>{
+      if(res.error){
+        GlobalVarsLogin.asMessageError = res.message
+        this.router.navigate([''])
+      } else {
+        this.categorias = res
+      }
+    })
   }
 
   readURL(archive: any){

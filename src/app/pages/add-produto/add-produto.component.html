@@ -32,10 +32,16 @@
               <div>Tag</div> <div class="new-tag"><a routerLink="/addcategoria"><i class="material-icons">label</i> Nova Tag</a></div>
             </div> <!-- flex-tag -->
 
-            <select name="categoria">
-              <option value="0" selected disabled>Selecione uma tag</option>
-              <option value="nome">nome</option>
+            <select name="categoria" *ngIf="categorias; else noCategories">
+                <option value="0" selected disabled>Selecione uma tag</option>
+                <option value="{{categoria.nome}}" *ngFor="let categoria of categorias.categories">{{categoria.nome}}</option>
             </select>
+
+            <ng-template #noCategories>
+              <select name="categoria">
+                <option value="0" selected disabled>Crie uma nova tag</option>
+              </select>
+            </ng-template>
           </div> <!-- w30 -->
 
           <div class="w50">
