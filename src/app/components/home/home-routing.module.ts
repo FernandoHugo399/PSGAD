@@ -1,3 +1,4 @@
+import { EstatisticasComponent } from './../../pages/estatisticas/estatisticas.component';
 import { CatalogoComponent } from './../../pages/catalogo/catalogo.component';
 import { HelpComponent } from './../../pages/help/help.component';
 import { IsAuthenticatedGuard } from './../../services/auth/is-authenticated.guard';
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: 'catalogo',
     component: CatalogoComponent,
+    canActivate: [IsAuthenticatedGuard]
+  },
+  {
+    path:'estatisticas',
+    component: EstatisticasComponent,
     canActivate: [IsAuthenticatedGuard]
   }
 ];
