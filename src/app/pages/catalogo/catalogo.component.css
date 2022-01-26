@@ -139,6 +139,14 @@
       max-width: 280px;
   }
 
+  .produto .img-produto{
+    height: 170px;
+  }
+
+  .produto .img-produto img{
+    height: 170px;
+  }
+
   .produto .nome-preco .nome h3{
       font-size: 16px;
 
@@ -159,6 +167,14 @@
   .produto{
       width: 100%;
       max-width: 340px;
+  }
+
+  .produto .img-produto{
+    height: 200px;
+  }
+
+  .produto .img-produto img{
+    height: 200px;
   }
 
   .produto .nome-preco .nome h3{
