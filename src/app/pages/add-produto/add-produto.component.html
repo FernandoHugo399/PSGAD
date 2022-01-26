@@ -1,1 +1,52 @@
-<p>add-produto works!</p>
+<app-sidebar></app-sidebar>
+<main>
+  <div class="add-produto">
+    <div class="title">
+      <h2>Clique no botão para</h2>
+      <h3>adicionar imagens ou clique x para remover</h3>
+    </div>
+
+    <form class="add-form" enctype="multipart/form-data">
+      <label for="upfile">Escolher Arquivo</label>
+      <input type="file" id="upfile" name="file" onchange="readURL(this);">
+      <div class="add-imagem">
+        <div class="img"><img class="upload_img" id="file_upload"><div class="close"><i class="material-icons">close</i></div></div>
+      </div>
+      <div class="flex-form">
+        <div class="flex-item">
+          <div class="w30">
+            <p>Nome</p>
+            <input type="text" name="nome" maxlength="100">
+          </div> <!-- w30 -->
+
+          <div class="w30">
+            <p>Preco</p>
+            <input type="text" name="preco">
+          </div> <!-- w30 -->
+
+          <div class="w30">
+            <div class="flex-tag">
+              <div>Tag</div> <div class="new-tag"><a routerLink="/addcategoria"><i class="material-icons">label</i> Nova Tag</a></div>
+            </div> <!-- flex-tag -->
+
+            <select name="categoria">
+              <option value="0" selected disabled>Selecione uma tag</option>
+              <option value="nome">nome</option>
+            </select>
+          </div> <!-- w30 -->
+
+          <div class="w50">
+              <p>Descrição</p>
+              <textarea name="descricao"></textarea>
+          </div> <!-- w50 -->
+
+          <div class="w30">
+              <input type="submit" value="Salvar">
+          </div> <!-- w30 -->
+        </div> <!-- flex-item -->
+
+      </div> <!-- flex-form -->
+    </form> <!-- add-form -->
+  </div> <!-- add-produto -->
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
