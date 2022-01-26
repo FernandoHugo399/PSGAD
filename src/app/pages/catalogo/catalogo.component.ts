@@ -1,3 +1,5 @@
+import { Product } from './catalogo.model';
+import  GlobalVarsLogin  from 'src/app/pages/login/login.model';
 import { CatalogoService } from './catalogo.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,12 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./catalogo.component.css']
 })
 export class CatalogoComponent implements OnInit {
-  public asProducts: boolean = false
+  public errorMessage = GlobalVarsLogin.asMessageError
+  public products: Product
   constructor(private CatalogoService: CatalogoService) { }
 
   ngOnInit(): void {
+    GlobalVarsLogin.asMessageError = ''
+
     this.CatalogoService.allProducts().subscribe((res)=>{
-      console.log(res)
+      this.products = res
     })
   }
 

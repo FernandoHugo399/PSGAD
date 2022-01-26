@@ -9,7 +9,9 @@ export interface IOrders {
     valor_total: number,
     status: string,
     formattedTime: string
-  }[]
+  }[],
+  error: string
+  message: string
 }
 
 export interface IHomeService {

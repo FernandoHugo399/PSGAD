@@ -4,18 +4,19 @@
 
       <div class="title"><h2>Que tal adicionar um novo produto?</h2></div>
       <div class="add-produto"><a routerLink="/addproduto"><button>Adicionar Produto</button></a></div>
-      <div class="lista-produtos" *ngIf='asProducts; else notProducts'>
-        <div class="produto">
-            <div class="img-produto"><img src="https://storage.googleapis.com/quantum-ether-335121.appspot.com/" alt=""></div>
+      <div class="errorMessage" *ngIf="errorMessage">{{errorMessage}}</div>
+      <div class="lista-produtos" *ngIf='products; else notProducts'>
+        <div class="produto" *ngFor="let product of products.products">
+            <div class="img-produto"><img src="https://storage.googleapis.com/quantum-ether-335121.appspot.com/{{product.image}}" alt="{{product.nome}}"></div>
 
             <div class="nome-preco">
-              <div class="nome"><h3></h3></div>
-              <div class="preco">R$ </div>
+              <div class="nome"><h3>{{product.nome}}</h3></div>
+              <div class="preco">R$ {{product.preco}}</div>
             </div> <!-- nome-preco -->
 
             <div class="categoria-avaliacao">
-              <div class="categoria"><img src="/images/tag.png"></div>
-              <div class="editar"><a routerLink="editproduto/"><img src="/images/edit.png"><span>Editar</span></a></div>
+              <div class="categoria"><i class="material-icons">label</i>{{product.categoria}}</div>
+              <div class="editar"><a routerLink="editproduto/{{product.id_produto}}"><i class="material-icons">edit</i><span>Editar</span></a></div>
             </div> <!-- categoria-avaliacao -->
           </div> <!-- produto -->
         </div> <!-- lista-produtos -->

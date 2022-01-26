@@ -2,12 +2,12 @@
 <main>
   <div class="main-home">
     <div class="title"><h1>Bem vindo de volta :)</h1></div>
-
   <div class="compras">
     <div class="title"><h2>Compras pendentes</h2></div>
+    <div class="errorMessage" *ngIf="errorMessage">{{errorMessage}}</div>
   </div> <!-- compras -->
 
-  <table class="table-pedidos" *ngIf="haveOrders; else noOrders">
+  <table class="table-pedidos" *ngIf="orders; else noOrders">
     <thead>
       <th>ID</th>
       <th>Nome do cliente</th>
@@ -24,7 +24,7 @@
   </table> <!-- table-pedidos -->
 
   <ng-template #noOrders>
-    <div class="sem-pedidos">Não há nenhum pedido pendente</div>
+    <div class="sem-pedidos" *ngIf="!errorMessage">Não há nenhum pedido pendente</div>
   </ng-template>
 
 </div> <!-- main-home -->

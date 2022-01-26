@@ -10,20 +10,22 @@ import GlobalVarsLogin from '../login/login.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  public errorMessage = GlobalVarsLogin.asMessageError
   orders: IOrders;
-  haveOrders: boolean;
 
   constructor(private HomeService: HomeService, private Router: Router) { }
 
   public ngOnInit(): void{
-    this.HomeService.pendingOrders().subscribe((res)=>{
-      this.orders = res
+    GlobalVarsLogin.asMessageError = ''
 
-      if(this.orders.length !== 0){
-        this.haveOrders = true
+    this.HomeService.pendingOrders().subscribe((res)=>{
+      if(res.error){
+        this.errorMessage = res.message
       } else {
-        this.haveOrders = false
+        this.orders = res
       }
+
+
     })
   }
 
