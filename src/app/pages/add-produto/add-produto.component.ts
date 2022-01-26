@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AddProdutoService } from './add-produto.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-add-produto',
@@ -6,13 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-produto.component.css']
 })
 export class AddProdutoComponent implements OnInit {
-
-  constructor() { }
+  @ViewChild('previewImage') previewImage: {nativeElement: HTMLImageElement}
+@ViewChild('inpFiles') inpFiles: {nativeElement: HTMLInputElement}
+  constructor(private AddProdutoService: AddProdutoService) { }
 
   ngOnInit(): void {
   }
 
-  readURL(){
-    console.log('ok')
+  readURL(archive: any){
+   this.AddProdutoService.readURL(archive, this.previewImage.nativeElement)
+  }
+
+  clearPreview(){
+    this.AddProdutoService.clearPreview(this.previewImage.nativeElement, this.inpFiles.nativeElement)
   }
 }

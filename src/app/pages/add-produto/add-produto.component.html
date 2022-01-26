@@ -8,10 +8,10 @@
 
     <form class="add-form" enctype="multipart/form-data">
       <div class="center-label"><label for="upfile">Escolher Arquivo</label></div>
-      <input type="file" id="upfile" name="file" (change)="readURL()">
+      <input type="file" id="upfile" name="file" (change)="readURL($event)" #inpFiles>
 
       <div class="add-imagem">
-        <div class="img"><img class="upload_img" id="file_upload"><div class="close"><i class="material-icons">close</i></div></div>
+        <div class="img"><img class="upload_img" #previewImage src=''><div class="close" (click)="clearPreview()"><i class="material-icons">close</i></div></div>
       </div> <!-- add-imagem -->
 
       <div class="flex-form">
