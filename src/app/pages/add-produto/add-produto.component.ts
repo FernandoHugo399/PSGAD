@@ -8,7 +8,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class AddProdutoComponent implements OnInit {
   @ViewChild('previewImage') previewImage: {nativeElement: HTMLImageElement}
-@ViewChild('inpFiles') inpFiles: {nativeElement: HTMLInputElement}
+  @ViewChild('inpFiles') inpFiles: {nativeElement: HTMLInputElement}
   constructor(private AddProdutoService: AddProdutoService) { }
 
   ngOnInit(): void {
