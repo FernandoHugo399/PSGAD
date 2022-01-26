@@ -22,7 +22,7 @@
         </div> <!-- lista-produtos -->
 
         <ng-template #notProducts>
-          <div class="not-exist">Sem produtos cadastrados</div>
+          <div class="not-exist" *ngIf="!errorMessage">Sem produtos cadastrados</div>
         </ng-template>
 
   </div> <!-- catalogo -->

@@ -17,7 +17,11 @@ export class CatalogoComponent implements OnInit {
     GlobalVarsLogin.asMessageError = ''
 
     this.CatalogoService.allProducts().subscribe((res)=>{
-      this.products = res
+      if(res.error){
+        this.errorMessage = res.message
+      } else {
+        this.products = res
+      }
     })
   }
 
