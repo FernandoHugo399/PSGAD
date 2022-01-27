@@ -39,15 +39,16 @@ export class AddProdutoComponent implements OnInit {
   }
 
   readURL(archive: any){
-   this.AddProdutoService.readURL(archive, this.previewImage.nativeElement)
+   this.AddProdutoService.readURL(archive, this.previewImage.nativeElement, this.Product)
   }
 
   clearPreview(){
-    this.AddProdutoService.clearPreview(this.previewImage.nativeElement, this.inpFiles.nativeElement)
+    this.AddProdutoService.clearPreview(this.previewImage.nativeElement, this.inpFiles.nativeElement, this.Product)
   }
 
   createProduct(e:any){
     e.preventDefault()
+    console.log(this.Product)
     this.AddProdutoService.createProduct(this.Product).subscribe((res)=>{
       console.log(res)
     })

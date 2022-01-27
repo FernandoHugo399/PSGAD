@@ -8,7 +8,7 @@
 
     <form class="add-form" enctype="multipart/form-data" (submit)="createProduct($event)" #form>
       <div class="center-label"><label for="upfile">Escolher Arquivo</label></div>
-      <input type="file" id="upfile" name="file" (change)="readURL($event)" #inpFiles [(ngModel)]='Product.file'>
+      <input type="file" id="upfile" name="file" (change)="readURL($event)" #inpFiles accept=".png,.svg,.jpg,.jpeg">
 
       <div class="add-imagem">
         <div class="img"><img class="upload_img" #previewImage src=''><div class="close" (click)="clearPreview()"><i class="material-icons">close</i></div></div>

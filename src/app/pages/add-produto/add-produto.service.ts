@@ -12,20 +12,22 @@ export class AddProdutoService implements IAddProdutoService {
   constructor(private http: HttpClient, private Router: Router) { }
   baseURL = GlobalVarsLogin.baseURL
 
-  readURL(archive: any , preImage: HTMLImageElement): void{
+  readURL(archive: any , preImage: HTMLImageElement, product: IProduct): void{
     if (archive.target.files && archive.target.files[0]) {
       var reader = new FileReader();
 
       reader.onload = function (e: any) {
-        console.log(preImage.setAttribute('src', e.target.result))
+        preImage.setAttribute('src', e.target.result)
+        product.file = archive.target.files[0]
       };
       reader.readAsDataURL(archive.target.files[0]);
     }
   }
 
-  clearPreview(img: HTMLImageElement, inp: HTMLInputElement): void{
+  clearPreview(img: HTMLImageElement, inp: HTMLInputElement, product: IProduct): void{
     img.setAttribute('src', '')
     inp.value = ''
+    product.file = undefined
   }
 
   getCategorias(): Observable<ICategoria>{
