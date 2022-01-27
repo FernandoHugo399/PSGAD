@@ -6,9 +6,9 @@
       <h3>adicionar imagens ou clique x para remover</h3>
     </div> <!-- title -->
 
-    <form class="add-form" enctype="multipart/form-data">
+    <form class="add-form" enctype="multipart/form-data" (submit)="createProduct($event)" #form>
       <div class="center-label"><label for="upfile">Escolher Arquivo</label></div>
-      <input type="file" id="upfile" name="file" (change)="readURL($event)" #inpFiles>
+      <input type="file" id="upfile" name="file" (change)="readURL($event)" #inpFiles [(ngModel)]='Product.file'>
 
       <div class="add-imagem">
         <div class="img"><img class="upload_img" #previewImage src=''><div class="close" (click)="clearPreview()"><i class="material-icons">close</i></div></div>
@@ -19,12 +19,12 @@
 
           <div class="w30">
             <p>Nome</p>
-            <input type="text" name="nome" maxlength="100">
+            <input type="text" name="nome" maxlength="100" [(ngModel)]='Product.nome'>
           </div> <!-- w30 -->
 
           <div class="w30">
             <p>Preco</p>
-            <input type="text" name="preco">
+            <input type="text" name="preco" [(ngModel)]='Product.preco'>
           </div> <!-- w30 -->
 
           <div class="w30">
@@ -32,7 +32,7 @@
               <div>Tag</div> <div class="new-tag"><a routerLink="/addcategoria"><i class="material-icons">label</i> Nova Tag</a></div>
             </div> <!-- flex-tag -->
 
-            <select name="categoria" *ngIf="categorias; else noCategories">
+            <select name="categoria" *ngIf="categorias; else noCategories" [ngModel]='Product.categoria'>
                 <option value="0" selected disabled>Selecione uma tag</option>
                 <option value="{{categoria.nome}}" *ngFor="let categoria of categorias.categories">{{categoria.nome}}</option>
             </select>
@@ -46,7 +46,7 @@
 
           <div class="w50">
               <p>Descrição</p>
-              <textarea name="descricao"></textarea>
+              <textarea name="descricao" [(ngModel)]='Product.descricao'></textarea>
           </div> <!-- w50 -->
 
           <div class="w30">

@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Observable, catchError, empty } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IAddProdutoService, ICategoria } from './add-produto.model';
+import { IAddProdutoService, ICategoria, IRequest, IProduct } from './add-produto.model';
 import { Injectable } from '@angular/core';
 import GlobalVarsLogin from '../login/login.model';
 
@@ -32,6 +32,15 @@ export class AddProdutoService implements IAddProdutoService {
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
     return this.http.get<ICategoria>(`${this.baseURL}/categories`, {headers: headers}).pipe(catchError((err)=>{
       GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao carregar a página'
+      this.Router.navigate(['catalogo'])
+
+      return empty()
+    }))
+  }
+  createProduct(product: IProduct): Observable<IRequest>{
+    const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
+    return this.http.post<IRequest>(`${this.baseURL}/product`, product, {headers: headers}).pipe(catchError((err)=>{
+      GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao criar o produto'
       this.Router.navigate(['catalogo'])
 
       return empty()

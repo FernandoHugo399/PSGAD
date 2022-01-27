@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { EstatisticasComponent } from './../../pages/estatisticas/estatisticas.component';
 import { AddProdutoComponent } from './../../pages/add-produto/add-produto.component';
 import { CatalogoComponent } from './../../pages/catalogo/catalogo.component';
@@ -20,6 +21,7 @@ import { HomeRoutingModule } from './home-routing.module';
     EstatisticasComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
     HomeRoutingModule
   ]
