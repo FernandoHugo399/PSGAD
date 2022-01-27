@@ -20,7 +20,7 @@ export class AddProdutoComponent implements OnInit {
   public Product: IProduct = {
     nome: '',
     preco: '',
-    categoria: '0',
+    categoria: '',
     descricao: '',
     file: undefined
   }
@@ -28,6 +28,7 @@ export class AddProdutoComponent implements OnInit {
 
   ngOnInit(): void {
     GlobalVarsLogin.asMessageError = ''
+
     this.AddProdutoService.getCategorias().subscribe((res)=>{
       if(res.error){
         GlobalVarsLogin.asMessageError = res.message
@@ -46,11 +47,24 @@ export class AddProdutoComponent implements OnInit {
     this.AddProdutoService.clearPreview(this.previewImage.nativeElement, this.inpFiles.nativeElement, this.Product)
   }
 
-  createProduct(e:any){
+  changeCategorie(e: any){
+    this.Product.categoria = e.value
+  }
+
+  createProduct(e:Event){
     e.preventDefault()
     console.log(this.Product)
     this.AddProdutoService.createProduct(this.Product).subscribe((res)=>{
-      console.log(res)
+      if(res.error){
+        this.errorMessage = res.message
+        this.Product.nome = ''
+        this.Product.preco = '',
+        this.Product.categoria = '',
+        this.Product.descricao = '',
+        this.clearPreview()
+      } else {
+        this.router.navigate(['catalogo'])
+      }
     })
   }
 }

@@ -11,7 +11,7 @@ export interface IProduct {
   preco?: string
   categoria?: string
   descricao?: string
-  file?: ArrayBuffer
+  file?: Blob
 }
 
 export interface IRequest{

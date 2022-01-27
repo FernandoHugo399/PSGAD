@@ -41,7 +41,14 @@ export class AddProdutoService implements IAddProdutoService {
   }
   createProduct(product: IProduct): Observable<IRequest>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
-    return this.http.post<IRequest>(`${this.baseURL}/product`, product, {headers: headers}).pipe(catchError((err)=>{
+    const formData = new FormData()
+    formData.append('file', product.file)
+    formData.append('categoria', product.categoria)
+    formData.append('descricao', product.descricao)
+    formData.append('nome', product.nome)
+    formData.append('preco', product.preco)
+
+    return this.http.post<IRequest>(`${this.baseURL}/product`, formData, {headers: headers}).pipe(catchError((err)=>{
       GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao criar o produto'
       this.Router.navigate(['catalogo'])
 
