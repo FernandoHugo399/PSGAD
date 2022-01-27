@@ -63,6 +63,7 @@ export class AddProdutoComponent implements OnInit {
         this.Product.descricao = '',
         this.clearPreview()
       } else {
+        GlobalVarsLogin.asMessageSuccess = 'Produto criado com sucesso'
         this.router.navigate(['catalogo'])
       }
     })

@@ -10,11 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CatalogoComponent implements OnInit {
   public errorMessage = GlobalVarsLogin.asMessageError
+  public successMessage = GlobalVarsLogin.asMessageSuccess
   public products: Product
   constructor(private CatalogoService: CatalogoService) { }
 
   ngOnInit(): void {
     GlobalVarsLogin.asMessageError = ''
+    GlobalVarsLogin.asMessageSuccess = ''
 
     this.CatalogoService.allProducts().subscribe((res)=>{
       if(res.error){

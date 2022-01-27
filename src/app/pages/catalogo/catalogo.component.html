@@ -5,6 +5,7 @@
       <div class="title"><h2>Que tal adicionar um novo produto?</h2></div>
       <div class="add-produto"><a routerLink="/addproduto"><button>Adicionar Produto</button></a></div>
       <div class="errorMessage" *ngIf="errorMessage">{{errorMessage}}</div>
+      <div class="successMessage" *ngIf="successMessage">{{successMessage}}</div>
       <div class="lista-produtos" *ngIf='products; else notProducts'>
         <div class="produto" *ngFor="let product of products.products">
             <div class="img-produto"><img src="https://storage.googleapis.com/quantum-ether-335121.appspot.com/{{product.image}}" alt="{{product.nome}}"></div>
