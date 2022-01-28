@@ -53,7 +53,6 @@ export class AddProdutoComponent implements OnInit {
 
   createProduct(e:Event){
     e.preventDefault()
-    console.log(this.Product)
     this.AddProdutoService.createProduct(this.Product).subscribe((res)=>{
       if(res.error){
         this.errorMessage = res.message
