@@ -39,7 +39,7 @@ export class AddProdutoComponent implements OnInit {
     })
   }
 
-  readURL(archive: any){
+  readURL(archive: Event){
    this.AddProdutoService.readURL(archive, this.previewImage.nativeElement, this.Product)
   }
 
@@ -47,8 +47,8 @@ export class AddProdutoComponent implements OnInit {
     this.AddProdutoService.clearPreview(this.previewImage.nativeElement, this.inpFiles.nativeElement, this.Product)
   }
 
-  changeCategorie(e: any){
-    this.Product.categoria = e.value
+  changeCategorie(event: Event){
+    this.Product.categoria = (event.target as HTMLInputElement).value
   }
 
   createProduct(e:Event){

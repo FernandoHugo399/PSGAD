@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 export interface IAddProdutoService{
-  readURL: (archive: any , preImage: HTMLImageElement, product: IProduct) => void;
+  readURL: (archive: Event , preImage: HTMLImageElement, product: IProduct) => void;
   clearPreview: (img: HTMLImageElement, inp: HTMLInputElement,  product: IProduct) => void;
   getCategorias: ()=> Observable<ICategoria>;
   createProduct: (product: IProduct)=> Observable<IRequest>;

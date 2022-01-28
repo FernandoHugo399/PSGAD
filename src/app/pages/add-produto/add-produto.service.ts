@@ -12,15 +12,16 @@ export class AddProdutoService implements IAddProdutoService {
   constructor(private http: HttpClient, private Router: Router) { }
   baseURL = GlobalVarsLogin.baseURL
 
-  readURL(archive: any , preImage: HTMLImageElement, product: IProduct): void{
-    if (archive.target.files && archive.target.files[0]) {
+  readURL(archive: Event , preImage: HTMLImageElement, product: IProduct): void{
+    const arc = (<HTMLInputElement>archive.target).files[0]
+    if (arc) {
       var reader = new FileReader();
 
-      reader.onload = function (e: any) {
-        preImage.setAttribute('src', e.target.result)
-        product.file = archive.target.files[0]
+      reader.onload = function (e) {
+        preImage.setAttribute('src', <string>e.target.result)
+        product.file = arc
       };
-      reader.readAsDataURL(archive.target.files[0]);
+      reader.readAsDataURL(arc);
     }
   }
 
@@ -51,7 +52,6 @@ export class AddProdutoService implements IAddProdutoService {
     return this.http.post<IRequest>(`${this.baseURL}/product`, formData, {headers: headers}).pipe(catchError((err)=>{
       GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao criar o produto'
       this.Router.navigate(['catalogo'])
-
       return empty()
     }))
   }
