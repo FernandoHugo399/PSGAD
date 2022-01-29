@@ -1,0 +1,26 @@
+<app-sidebar></app-sidebar>
+<main class="main-categoria">
+  <div class="title"><h1>Adicionar Tags</h1></div>
+
+  <div class="errorMessage" *ngIf="errorMessage">{{errorMessage}}</div>
+  <div class="successMessage" *ngIf="successMessage">{{successMessage}}</div>
+
+  <form class="form-categoria" method="post">
+    <div class="w80"><p>Nome: </p><input type="text" name="nome" maxlength="100"></div>
+    <div class="w20"><input type="submit" value="Salvar"></div>
+  </form> <!-- form-categoria -->
+
+  <div class="list"><h2>Tags</h2></div>
+
+  <div class="list-categorias" *ngIf="categorias; else noCategories">
+    <div class="categoria" *ngFor="let cat of categorias.categories">
+        <div class="cat-nome">{{cat.nome}}</div>
+        <div class="delete"><a routerLink="/deletecategoria">Deletar</a></div>
+    </div> <!-- categoria -->
+
+  </div> <!-- list-categoria -->
+
+  <ng-template #noCategories>
+    <div class="not-exist">Não existem categorias</div>
+  </ng-template>
+</main> <!-- main-categoria -->

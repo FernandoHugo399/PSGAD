@@ -8,7 +8,7 @@ import { SidebarComponent } from './../sidebar/sidebar.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
-
+import { CategoriaComponent } from 'src/app/pages/categoria/categoria.component';
 
 
 @NgModule({
@@ -18,7 +18,8 @@ import { HomeRoutingModule } from './home-routing.module';
     HomeComponent,
     CatalogoComponent,
     AddProdutoComponent,
-    EstatisticasComponent
+    EstatisticasComponent,
+    CategoriaComponent
   ],
   imports: [
     FormsModule,

@@ -1,3 +1,4 @@
+import { CategoriaComponent } from './../../pages/categoria/categoria.component';
 import { AddProdutoComponent } from './../../pages/add-produto/add-produto.component';
 import { EstatisticasComponent } from './../../pages/estatisticas/estatisticas.component';
 import { CatalogoComponent } from './../../pages/catalogo/catalogo.component';
@@ -31,6 +32,11 @@ const routes: Routes = [
   {
     path: 'addproduto',
     component: AddProdutoComponent,
+    canActivate: [IsAuthenticatedGuard]
+  },
+  {
+    path: 'categoria',
+    component: CategoriaComponent,
     canActivate: [IsAuthenticatedGuard]
   }
 ];

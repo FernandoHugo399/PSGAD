@@ -1,0 +1,136 @@
+.main-categoria .title{
+  padding-top: 30px;
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.main-categoria .title h1{
+  font-weight: 400;
+}
+
+.main-categoria .form-categoria{
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+
+.main-categoria .form-categoria .w80{
+  width: 60%;
+}
+.main-categoria .form-categoria .w80 p{
+  padding-bottom: 3px;
+}
+
+.main-categoria .form-categoria .w80 input{
+  width: 100%;
+  padding: 8px;
+  outline: 0;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+}
+
+.main-categoria .form-categoria .w20{
+  width: 22%;
+}
+
+.main-categoria .form-categoria .w20 input{
+  width: 100%;
+  max-width: 300px;
+  padding: 8px;
+  outline: 0;
+  background-color: var(--main-bg-yellow);
+  color: var(--main-text-white);
+  border: 2px solid var(--main-bg-yellow-hover);
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.main-categoria .form-categoria .w20 input:hover{
+  background-color: var(--main-bg-yellow-hover);
+}
+
+.main-categoria .list h2{
+  font-size: 26px;
+  font-weight: 400;
+  padding: 10px 0;
+}
+
+.main-categoria .not-exist{
+  font-size: 22px;
+}
+
+.main-categoria .list-categorias{
+  padding-bottom: 40px;
+}
+
+.main-categoria .categoria{
+  font-size: 20px;
+  padding-top: 5px;
+  border-bottom: 1px solid #ccc;
+  max-width: 1000px;
+  width: 100%;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 3px;
+  text-transform: capitalize;
+}
+
+.main-categoria .categoria .cat-nome{
+  word-break: break-all;
+}
+
+.main-categoria .categoria .delete a{
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background-color: rgba(255, 0, 0, 0.500);
+  border-radius: 10px;
+  color: var(--main-text-white);
+  padding: 4px 8px;
+  transition: 0.1s;
+}
+
+.main-categoria .categoria .delete a:hover{
+  background-color: #5A5C6C;
+}
+
+.main-categoria .categoria .delete img{
+  width: 15px;
+}
+
+.add-produto .delete-item{
+  cursor: pointer;
+  margin-top: 24px;
+  background-color: rgba(255, 0, 0, 0.670);
+  width: 95px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0 3px;
+  color: white;
+  text-decoration: none;
+  border: 2px solid red;
+  border-radius: 8px;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+@media screen and (max-width:900px){
+  .main-categoria .list h2{
+    text-align: center;
+  }
+
+  .main-categoria .not-exist{
+    text-align: center;
+    width: 100%;
+    text-align: center;
+  }
+
+}
+

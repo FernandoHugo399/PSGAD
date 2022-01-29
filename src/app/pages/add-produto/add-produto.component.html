@@ -30,7 +30,7 @@
 
           <div class="w30">
             <div class="flex-tag">
-              <div>Tag</div> <div class="new-tag"><a routerLink="/addcategoria"><i class="material-icons">label</i> Nova Tag</a></div>
+              <div>Tag</div> <div class="new-tag"><a routerLink="/categoria"><i class="material-icons">label</i> Nova Tag</a></div>
             </div> <!-- flex-tag -->
 
             <select name="categoria" *ngIf="categorias; else noCategories" [(ngModel)]="Product.categoria" (change)="changeCategorie($event)">

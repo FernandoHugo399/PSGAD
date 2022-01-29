@@ -40,6 +40,7 @@ export class AddProdutoService implements IAddProdutoService {
       return empty()
     }))
   }
+
   createProduct(product: IProduct): Observable<IRequest>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
     const formData = new FormData()
