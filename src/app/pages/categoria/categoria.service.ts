@@ -29,6 +29,6 @@ export class CategoriaService implements ICategoriaService{
 
   deleteCategoria(id:number): Observable<IRequest>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
-    return this.http.post<IRequest>(`${this.baseURL}/categories/delete`, {id: id}, {headers: headers})
+    return this.http.delete<IRequest>(`${this.baseURL}/categories/${id}`, {headers: headers})
   }
 }
