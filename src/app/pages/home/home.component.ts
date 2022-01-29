@@ -21,7 +21,12 @@ export class HomeComponent implements OnInit {
     this.HomeService.pendingOrders().subscribe((res)=>{
       if(res.error){
         this.errorMessage = res.message
-      } else {
+
+      } else if (res.authError){
+        GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+        this.Router.navigate(['login'])
+      }
+       else {
         this.orders = res
       }
 

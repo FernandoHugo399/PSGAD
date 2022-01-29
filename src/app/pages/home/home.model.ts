@@ -12,6 +12,7 @@ export interface IOrders {
   }[],
   error: string
   message: string
+  authError: string
 }
 
 export interface IHomeService {

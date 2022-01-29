@@ -22,8 +22,8 @@ export class CategoriaService implements ICategoriaService{
     }))
   }
 
-  createCategoria(): Observable<IRequest>{
+  createCategoria(nome: string): Observable<IRequest>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
-    return this.http.post<IRequest>(`${this.baseURL}/categories`, '', {headers: headers})
+    return this.http.post<IRequest>(`${this.baseURL}/categories`, {nome: nome}, {headers: headers})
   }
 }

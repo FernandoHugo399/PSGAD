@@ -8,14 +8,16 @@ export interface ICategoria{
   }[]
   error: string
   message: string
+  authError?: string
 }
 
 export interface IRequest{
   error?: string
   message?: string
+  authError?: string
 }
 
 export interface ICategoriaService{
   getCategorias: ()=> Observable<ICategoria>;
-  createCategoria: ()=> Observable<IRequest>;
+  createCategoria: (nome: string)=> Observable<IRequest>;
 }

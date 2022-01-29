@@ -6,7 +6,7 @@
   <div class="successMessage" *ngIf="successMessage">{{successMessage}}</div>
 
   <form class="form-categoria" method="post">
-    <div class="w80"><p>Nome: </p><input type="text" name="nome" maxlength="100"></div>
+    <div class="w80"><p>Nome: </p><input type="text" name="nome" maxlength="100" [(ngModel)]='newCategory'></div>
     <div class="w20"><input type="submit" value="Salvar" (click)="createCategory()"></div>
   </form> <!-- form-categoria -->
 
