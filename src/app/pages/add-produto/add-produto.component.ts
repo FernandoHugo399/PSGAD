@@ -33,6 +33,11 @@ export class AddProdutoComponent implements OnInit {
       if(res.error){
         GlobalVarsLogin.asMessageError = res.message
         this.router.navigate([''])
+
+      }else if (res.authError){
+        GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+        this.router.navigate(['login'])
+
       } else {
         this.categorias = res
       }
@@ -61,6 +66,11 @@ export class AddProdutoComponent implements OnInit {
         this.Product.categoria = '',
         this.Product.descricao = '',
         this.clearPreview()
+
+      }else if (res.authError){
+        GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+        this.router.navigate(['login'])
+
       } else {
         GlobalVarsLogin.asMessageSuccess = 'Produto criado com sucesso'
         this.router.navigate(['catalogo'])

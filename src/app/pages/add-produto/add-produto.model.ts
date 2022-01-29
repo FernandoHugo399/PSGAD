@@ -17,6 +17,7 @@ export interface IProduct {
 export interface IRequest{
   error?: string
   message?: string
+  authError?: string
 }
 
 export interface ICategoria{
@@ -27,4 +28,5 @@ export interface ICategoria{
   }[]
   error: string
   message: string
+  authError?: string
 }

@@ -1,7 +1,7 @@
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
-import { catchError, empty, map, Observable } from 'rxjs';
+import { catchError, of, map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { IProcessLogin } from 'src/app/pages/login/login.model';
 import GlobalVarsLogin from 'src/app/pages/login/login.model';
@@ -26,7 +26,7 @@ export class IsAuthenticatedGuard implements CanActivate {
     })).pipe(catchError((err:IProcessLogin)=>{
       GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao efetuar a conexão'
       this.Router.navigate(['login'])
-      return empty()
+      return of(false)
     }))
   }
 

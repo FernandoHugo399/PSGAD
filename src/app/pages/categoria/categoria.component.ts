@@ -25,9 +25,11 @@ export class CategoriaComponent implements OnInit {
     this.CategoriaService.getCategorias().subscribe((res)=>{
       if(res.error){
         this.errorMessage = 'Ocorreu um erro ao listar as categorias'
+
       }else if (res.authError){
         GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
         this.Router.navigate(['login'])
+
       } else {
         this.categorias = res
       }
@@ -48,6 +50,7 @@ export class CategoriaComponent implements OnInit {
       } else if (res.authError){
         GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
         this.Router.navigate(['login'])
+
       } else {
         this.errorMessage = ''
         this.successMessage = res.message

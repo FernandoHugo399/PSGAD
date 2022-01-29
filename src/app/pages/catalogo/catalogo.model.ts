@@ -11,6 +11,7 @@ export interface Product{
   }[]
   error?: string
   message?: string
+  authError?: string
 }
 
 export interface ICatalogoService{
