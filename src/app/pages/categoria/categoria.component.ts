@@ -58,17 +58,56 @@ export class CategoriaComponent implements OnInit {
 
         this.CategoriaService.getCategorias().subscribe((res)=>{
           if(res.error){
+            this.successMessage = ''
             this.errorMessage = 'Ocorreu um erro ao listar as categorias'
+
+          } else if (res.authError){
+            GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+            this.Router.navigate(['login'])
+
           } else {
             this.categorias = res
           }
         })
       }
-
-
-
     })
+  }
 
+  deleteCategory(id: number){
+   this.CategoriaService.deleteCategoria(id).pipe(catchError((err)=>{
+    this.successMessage = ''
+    this.errorMessage = 'Ocorreu um erro interno ao deletar a categoria. Verifique se não está ligada a algum produto'
+    return empty()
+
+  })).subscribe((res)=>{
+    console.log(res)
+    if(res.error){
+      this.successMessage = ''
+      this.errorMessage = res.message
+
+    } else if (res.authError){
+      GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+      this.Router.navigate(['login'])
+
+    } else {
+      this.errorMessage = ''
+      this.successMessage = res.message
+
+      this.CategoriaService.getCategorias().subscribe((res)=>{
+        if(res.error){
+          this.successMessage = ''
+          this.errorMessage = 'Ocorreu um erro ao listar as categorias'
+
+        }else if (res.authError){
+          GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+          this.Router.navigate(['login'])
+
+        } else {
+          this.categorias = res
+        }
+      })
+    }
+   })
   }
 
 }

@@ -93,6 +93,7 @@
   color: var(--main-text-white);
   padding: 4px 8px;
   transition: 0.1s;
+  cursor: pointer;
 }
 
 .main-categoria .categoria .delete a:hover{

@@ -20,4 +20,5 @@ export interface IRequest{
 export interface ICategoriaService{
   getCategorias: ()=> Observable<ICategoria>;
   createCategoria: (nome: string)=> Observable<IRequest>;
+  deleteCategoria: (id: number)=> Observable<IRequest>
 }
