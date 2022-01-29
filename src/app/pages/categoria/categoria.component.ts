@@ -1,3 +1,4 @@
+import { catchError, empty } from 'rxjs';
 import { CategoriaService } from './categoria.service';
 import  GlobalVarsLogin  from 'src/app/pages/login/login.model';
 import { Component, OnInit } from '@angular/core';
@@ -25,8 +26,18 @@ export class CategoriaComponent implements OnInit {
       } else {
         this.categorias = res
       }
+    })
+  }
 
+  createCategory(): void{
+    this.CategoriaService.createCategoria().pipe(catchError((err)=>{
+      this.errorMessage = 'Ocorreu um erro interno ao criar o produto'
+      return empty()
 
+    })).subscribe((res)=>{
+      if(res.error){
+        this.errorMessage = res.message
+      }
     })
   }
 

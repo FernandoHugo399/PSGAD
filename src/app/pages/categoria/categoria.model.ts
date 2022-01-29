@@ -10,6 +10,12 @@ export interface ICategoria{
   message: string
 }
 
+export interface IRequest{
+  error?: string
+  message?: string
+}
+
 export interface ICategoriaService{
   getCategorias: ()=> Observable<ICategoria>;
+  createCategoria: ()=> Observable<IRequest>;
 }

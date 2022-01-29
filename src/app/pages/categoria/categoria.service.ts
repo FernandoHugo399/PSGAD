@@ -1,4 +1,4 @@
-import { ICategoria, ICategoriaService } from './categoria.model';
+import { ICategoria, ICategoriaService, IRequest } from './categoria.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, empty } from 'rxjs';
 import { Router } from '@angular/router';
@@ -20,5 +20,10 @@ export class CategoriaService implements ICategoriaService{
 
       return empty()
     }))
+  }
+
+  createCategoria(): Observable<IRequest>{
+    const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
+    return this.http.post<IRequest>(`${this.baseURL}/categories`, '', {headers: headers})
   }
 }
