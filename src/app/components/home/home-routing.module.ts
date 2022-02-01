@@ -1,3 +1,4 @@
+import { BalancoDeVendasComponent } from './../../pages/balanco-de-vendas/balanco-de-vendas.component';
 import { CategoriaComponent } from './../../pages/categoria/categoria.component';
 import { AddProdutoComponent } from './../../pages/add-produto/add-produto.component';
 import { EstatisticasComponent } from './../../pages/estatisticas/estatisticas.component';
@@ -37,6 +38,11 @@ const routes: Routes = [
   {
     path: 'categoria',
     component: CategoriaComponent,
+    canActivate: [IsAuthenticatedGuard]
+  },
+  {
+    path: 'balanco-de-vendas',
+    component: BalancoDeVendasComponent,
     canActivate: [IsAuthenticatedGuard]
   }
 ];

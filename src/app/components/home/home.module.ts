@@ -1,3 +1,4 @@
+import { BalancoDeVendasComponent } from './../../pages/balanco-de-vendas/balanco-de-vendas.component';
 import { FormsModule } from '@angular/forms';
 import { EstatisticasComponent } from './../../pages/estatisticas/estatisticas.component';
 import { AddProdutoComponent } from './../../pages/add-produto/add-produto.component';
@@ -19,7 +20,8 @@ import { CategoriaComponent } from 'src/app/pages/categoria/categoria.component'
     CatalogoComponent,
     AddProdutoComponent,
     EstatisticasComponent,
-    CategoriaComponent
+    CategoriaComponent,
+    BalancoDeVendasComponent
   ],
   imports: [
     FormsModule,

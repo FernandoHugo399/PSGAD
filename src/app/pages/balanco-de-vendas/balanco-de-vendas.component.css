@@ -1,0 +1,123 @@
+.balanco-de-vendas{
+  padding-top: 40px;
+}
+
+.balanco-de-vendas .title h2{
+  font-family: var(--fontPrinc);
+  font-weight: 500;
+  font-size: 36px;
+  padding-bottom: 30px;
+}
+
+.balanco-de-vendas .container-graphic{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balanco-de-vendas .container-graphic .graphic{
+  display: block;
+  width: 70%;
+}
+
+.balanco-de-vendas .container-graphic .statistic{
+  padding: 0 1%;
+}
+
+
+.balanco-de-vendas .container-graphic .statistic h2{
+  font-size: 3.4vw;
+  width: 100%;
+}
+
+.balanco-de-vendas .container-graphic .statistic p{
+  font-size: 1.5vw;
+  width: 100%;
+
+}
+
+
+.balanco-de-vendas .container-statistic{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 90px;
+}
+
+.balanco-de-vendas .container-statistic .item-statistic{
+  padding: 10px;
+  width: 300px;
+
+}
+
+.balanco-de-vendas .container-statistic .item-statistic h3{
+  font-size: 36px;
+}
+
+.balanco-de-vendas .container-statistic .item-statistic p{
+  font-size: 18px;
+}
+
+
+@media screen and (max-width:900px){
+  .balanco-de-vendas .container-graphic{
+      flex-direction: column;
+  }
+
+  .balanco-de-vendas .container-graphic .graphic{
+      width: 100%;
+  }
+
+  .balanco-de-vendas .title h2{
+      text-align: center;
+  }
+
+  .balanco-de-vendas .container-graphic .statistic{
+      padding: 0;
+      text-align: center;
+  }
+
+  .balanco-de-vendas .container-graphic .statistic h2{
+      padding-top: 20px;
+      font-size: 36px;
+  }
+
+  .balanco-de-vendas .container-graphic .statistic p{
+      font-size: 18px;
+  }
+
+  .balanco-de-vendas .container-statistic{
+      text-align: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-top: 20px;
+  }
+
+  .balanco-de-vendas .container-statistic .item-statistic{
+    padding: 10px;
+    width: 300px;
+
+  }
+}
+
+@media screen and (max-width:590px){
+  .balanco-de-vendas .title h2{
+      font-size: 30px;
+  }
+
+  .balanco-de-vendas .container-graphic .statistic h2{
+      font-size: 30px;
+  }
+
+  .balanco-de-vendas .container-graphic .statistic p{
+      font-size: 16px;
+  }
+
+  .balanco-de-vendas .container-statistic .item-statistic h3{
+      font-size: 30px;
+  }
+
+  .balanco-de-vendas .container-statistic .item-statistic p{
+      font-size: 16px;
+  }
+}
