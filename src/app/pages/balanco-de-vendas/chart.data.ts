@@ -58,6 +58,8 @@ meses.map((e: ChartData)=>{
 
 export class ChartJsData{
 
+  public meses = meses
+
   public data = {
     labels: labels,
     datasets: [
@@ -65,7 +67,7 @@ export class ChartJsData{
         label: 'Vendas no mês',
         backgroundColor: 'rgb(252, 210, 50)',
         borderColor: 'rgb(252, 210, 50)',
-        data:  [2345, 2221, 5443, 3543, 3412, 1253, 7643, 3512, 8765, 7656, 4432, 5653],
+        data:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0],
         borderRadius: 30,
     }
     ]
