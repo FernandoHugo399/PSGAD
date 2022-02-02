@@ -16,8 +16,6 @@ export class BalancoDeVendasComponent implements OnInit {
     Chart.register(...registerables)
   }
 
-  public data = this.ChartJsData.data
-  public option = this.ChartJsData.option
   public config = this.ChartJsData.config
 
   ngOnInit(): void {

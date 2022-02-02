@@ -1,7 +1,65 @@
+import { BubbleDataPoint, ChartConfiguration, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
+import { ChartData } from './balanco-de-vendas.model';
+let mesAtual = new Date().getMonth()
+
+const meses: ChartData[] = []
+for(var i = 0; i < 12; i++){
+
+    switch(mesAtual){
+        case 0:
+            meses.push({mes: 'Janeiro', mesCount: 0, vendas: [], valorTotal: 0})
+            break
+        case 1:
+            meses.push({mes: 'Fevereiro', mesCount: 1, vendas: [], valorTotal: 0})
+            break
+        case 2:
+            meses.push({mes: 'Março', mesCount: 2, vendas: [], valorTotal: 0})
+            break
+        case 3:
+            meses.push({mes: 'Abril', mesCount: 3, vendas: [], valorTotal: 0})
+            break
+        case 4:
+            meses.push({mes: 'Maio', mesCount: 4, vendas: [], valorTotal: 0})
+            break
+        case 5:
+            meses.push({mes: 'Junho', mesCount: 5, vendas: [], valorTotal: 0})
+            break
+        case 6:
+            meses.push({mes: 'Julho', mesCount: 6, vendas: [], valorTotal: 0})
+            break
+        case 7:
+            meses.push({mes: 'Agosto', mesCount: 7, vendas: [], valorTotal: 0})
+            break
+        case 8:
+            meses.push({mes: 'Setembro', mesCount: 8, vendas: [], valorTotal: 0})
+            break
+        case 9:
+            meses.push({mes: 'Outubro', mesCount: 9, vendas: [], valorTotal: 0})
+            break
+        case 10:
+            meses.push({mes: 'Novembro', mesCount: 10, vendas: [], valorTotal: 0})
+            break
+        case 11:
+            meses.push({mes: 'Dezembro', mesCount: 11, vendas: [], valorTotal: 0})
+            break
+        }
+    if(mesAtual === 0){
+        mesAtual = 12
+    }
+    mesAtual--
+}
+
+meses.reverse()
+const labels: string[] = []
+
+meses.map((e: ChartData)=>{
+    labels.push(e.mes)
+})
+
 export class ChartJsData{
 
   public data = {
-    labels: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'],
+    labels: labels,
     datasets: [
     {
         label: 'Vendas no mês',
@@ -13,7 +71,7 @@ export class ChartJsData{
     ]
   }
 
-  public option = {
+  public option: unknown = {
     plugins: {
       legend: {
         display: false
@@ -57,9 +115,8 @@ export class ChartJsData{
     maintainAspectRatio: false
   }
 
-  public config: any = {
+  public config: ChartConfiguration<keyof ChartTypeRegistry, (number | ScatterDataPoint | BubbleDataPoint)[], unknown>  = {
     type: 'bar',
     data: this.data,
     options: this.option
-  }
-}
+  }}
