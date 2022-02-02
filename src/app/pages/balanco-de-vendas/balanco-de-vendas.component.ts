@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Chart, registerables } from 'chart.js';
+import { ChartJsData } from './chart.data'
 
 @Component({
   selector: 'app-balanco-de-vendas',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BalancoDeVendasComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('myChart', {static: true})  myChart: ElementRef
+  ChartJsData = new ChartJsData()
 
-  ngOnInit(): void {
+  constructor(){
+    Chart.register(...registerables)
   }
 
+  public data = this.ChartJsData.data
+  public option = this.ChartJsData.option
+  public config = this.ChartJsData.config
+
+  ngOnInit(): void {
+    new Chart(  this.myChart.nativeElement, this.config)
+  }
 }

@@ -19,6 +19,9 @@
 .balanco-de-vendas .container-graphic .graphic{
   display: block;
   width: 70%;
+  max-height: 500px;
+  min-height: 180px;
+  height: 40vh;
 }
 
 .balanco-de-vendas .container-graphic .statistic{
