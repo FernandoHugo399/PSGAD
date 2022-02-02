@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import  GlobalVarsLogin  from 'src/app/pages/login/login.model';
 import { BalancoDeVendasService } from './balanco-de-vendas.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart, registerables, BubbleDataPoint, ChartConfiguration, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
@@ -12,7 +14,7 @@ export class BalancoDeVendasComponent implements OnInit {
 
   @ViewChild('myChart', {static: true})  myChart: ElementRef
 
-  constructor(private BalancoDeVendasService: BalancoDeVendasService){
+  constructor(private BalancoDeVendasService: BalancoDeVendasService, private Router: Router){
     Chart.register(...registerables)
   }
 
@@ -20,8 +22,17 @@ export class BalancoDeVendasComponent implements OnInit {
 
   ngOnInit(): void {
     this.BalancoDeVendasService.chartValues().subscribe((res)=>{
-      this.config = this.BalancoDeVendasService.config
-      new Chart(  this.myChart.nativeElement, this.config)
+
+      if(res.error){
+        GlobalVarsLogin.asMessageError = res.message
+        this.Router.navigate([''])
+
+      } else {
+        this.config = this.BalancoDeVendasService.config
+        new Chart(  this.myChart.nativeElement, this.config)
+      }
+
+
     })
 
   }

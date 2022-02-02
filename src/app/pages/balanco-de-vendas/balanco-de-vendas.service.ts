@@ -1,6 +1,7 @@
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, catchError, empty } from 'rxjs';
 import { IBalancoDeVendasService, OrderPedido, ChartData } from './balanco-de-vendas.model';
 import { ChartJsData } from './chart.data';
 import GlobalVarsLogin from '../login/login.model';
@@ -16,7 +17,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
   public mesAtual = new Date().getMonth()
   public anoAtual = new Date().getFullYear()
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private Router: Router) { }
 
   chartValues(): Observable<OrderPedido>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
@@ -51,6 +52,11 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
       this.meses.map((e)=>{
         this.config.data.datasets[0].data.push(e.valorTotal)
       })
+
+    })).pipe(catchError((err)=>{
+      GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao carregar a página'
+      this.Router.navigate([''])
+      return empty()
     }))
   }
 }
