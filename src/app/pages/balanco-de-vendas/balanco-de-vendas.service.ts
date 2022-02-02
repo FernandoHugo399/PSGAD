@@ -23,6 +23,13 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
     return this.http.get<OrderPedido>(`${this.baseURL}/order/completed`, {headers: headers}).pipe(tap((res)=>{
 
+      this.config.data.datasets[0].data = []
+
+      this.meses.map((e)=>{
+        e.vendas = []
+        e.valorTotal = 0
+      })
+
       for(var i = 0; i < res.length; i++){
         let date = ((Date.now() - Date.parse(res.pedidos[i].data_pedido)) / (1000 * 60 * 60 * 24 * 30))
         let month = new Date((Date.parse(res.pedidos[i].data_pedido))).getMonth()
@@ -47,7 +54,6 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
         }
       }
 
-      this.config.data.datasets[0].data = []
 
       this.meses.map((e)=>{
         this.config.data.datasets[0].data.push(e.valorTotal)
