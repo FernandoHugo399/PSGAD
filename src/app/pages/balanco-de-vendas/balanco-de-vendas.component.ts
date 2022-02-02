@@ -27,6 +27,10 @@ export class BalancoDeVendasComponent implements OnInit {
         GlobalVarsLogin.asMessageError = res.message
         this.Router.navigate([''])
 
+      }else if (res.authError){
+        GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+        this.Router.navigate(['login'])
+
       } else {
         this.config = this.BalancoDeVendasService.config
         new Chart(  this.myChart.nativeElement, this.config)

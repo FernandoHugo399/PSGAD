@@ -25,6 +25,7 @@ export interface OrderPedido{
     quantidade: number
     data_pedido: string
   }[]
+  authError: string
   error: string
   message: string
 }
