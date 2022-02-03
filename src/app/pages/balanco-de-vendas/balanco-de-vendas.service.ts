@@ -14,8 +14,13 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
   public config = this.ChartJsData.config
   public baseURL = GlobalVarsLogin.baseURL
   public meses = this.ChartJsData.meses
+  public totalMesAtual: number
+  public vendaTotaisMesAtual: number
+  public totalMesAnterior: number
+  public vendaTotaisMesAnterior: number
   public mesAtual = new Date().getMonth()
   public anoAtual = new Date().getFullYear()
+  public porcentVendas: number
 
   constructor(private http: HttpClient, private Router: Router) { }
 
@@ -35,7 +40,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
         let month = new Date((Date.parse(res.pedidos[i].data_pedido))).getMonth()
         let year = new Date((Date.parse(res.pedidos[i].data_pedido))).getFullYear()
 
-        if(date < 12){
+        if(date >= 0 && date < 12){
           this.meses.map((e:ChartData)=>{
             if(e.mesCount === month){
               if(month === this.mesAtual){
@@ -54,11 +59,35 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
         }
       }
 
-
       this.meses.map((e)=>{
+        if(e.mesCount === this.mesAtual){
+          this.totalMesAtual = e.valorTotal
+          this.vendaTotaisMesAtual = e.vendas.length
+
+        } if(e.mesCount === 11 && this.mesAtual === 0 ){
+          this.totalMesAnterior = e.valorTotal
+          this.vendaTotaisMesAnterior = e.vendas.length
+
+        }else if(e.mesCount === this.mesAtual - 1){
+          this.totalMesAnterior = e.valorTotal
+          this.vendaTotaisMesAnterior = e.vendas.length
+
+        }
         this.config.data.datasets[0].data.push(e.valorTotal)
+
       })
 
+      if(this.vendaTotaisMesAnterior <= 0){
+        this.porcentVendas = this.vendaTotaisMesAtual * 100
+      } else if (this.vendaTotaisMesAtual <= 0){
+        this.porcentVendas = this.vendaTotaisMesAnterior * -100
+      } else if (this.vendaTotaisMesAtual > this.vendaTotaisMesAnterior) {
+        this.porcentVendas = ((this.vendaTotaisMesAtual - this.vendaTotaisMesAnterior) / this.vendaTotaisMesAnterior) * 100
+      } else if (this.vendaTotaisMesAtual < this.vendaTotaisMesAnterior) {
+        this.porcentVendas = ((this.vendaTotaisMesAnterior - this.vendaTotaisMesAtual) / this.vendaTotaisMesAnterior) * -100
+      }
+
+      console.log(this.porcentVendas)
     })).pipe(catchError((err)=>{
       GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao carregar a página'
       this.Router.navigate([''])

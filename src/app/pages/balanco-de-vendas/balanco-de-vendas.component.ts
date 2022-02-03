@@ -17,6 +17,9 @@ export class BalancoDeVendasComponent implements OnInit {
   constructor(private BalancoDeVendasService: BalancoDeVendasService, private Router: Router){
     Chart.register(...registerables)
   }
+  public displayMain: boolean = false
+  public totalMesAtual: number
+  public vendasTotaisMesAtual: number
 
   public config: ChartConfiguration<keyof ChartTypeRegistry, (number | ScatterDataPoint | BubbleDataPoint)[], unknown>
 
@@ -34,6 +37,9 @@ export class BalancoDeVendasComponent implements OnInit {
       } else {
         this.config = this.BalancoDeVendasService.config
         new Chart(  this.myChart.nativeElement, this.config)
+        this.totalMesAtual = this.BalancoDeVendasService.totalMesAtual
+        this.vendasTotaisMesAtual = this.BalancoDeVendasService.vendaTotaisMesAtual
+        this.displayMain = true
       }
 
 
