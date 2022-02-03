@@ -18,6 +18,13 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
   public vendaTotaisMesAtual: number
   public totalMesAnterior: number
   public vendaTotaisMesAnterior: number
+
+  public produtosVendidosMesAtual: string[]
+  public produtosSuasVendas: {
+    nome: string
+    quantidade : number
+  }[] = []
+
   public mesAtual = new Date().getMonth()
   public anoAtual = new Date().getFullYear()
   public porcentVendas: number
@@ -61,6 +68,9 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
       this.meses.map((e)=>{
         if(e.mesCount === this.mesAtual){
+          this.produtosVendidosMesAtual = e.vendas.map((product)=>{
+            return product.produto
+          })
           this.totalMesAtual = e.valorTotal
           this.vendaTotaisMesAtual = e.vendas.length
 
@@ -89,7 +99,40 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
         this.porcentVendas = 0
       }
 
+      this.produtosVendidosMesAtual.push('pão integral com grãos')
+      this.produtosVendidosMesAtual.push('doce de chocolate amargo')
+      this.produtosVendidosMesAtual.push('doce de chocolate amargo')
+      console.log(this.produtosVendidosMesAtual)
+      this.produtosVendidosMesAtual.map((e)=>{
+        if(this.produtosSuasVendas.length === 0){
+          this.produtosSuasVendas.push({
+            nome: e,
+            quantidade: 1
+          })
+
+        }else if(this.produtosSuasVendas.length !== 0){
+
+        // Está nesse ciclo o bug \\
+       /*  this.produtosSuasVendas.map((pro)=>{
+          if(pro.nome === e){
+            pro.quantidade ++
+
+          } else {
+            this.produtosSuasVendas.push({
+              nome: e,
+              quantidade: 1
+            })
+          }
+
+          }) */
+
+        }
+
+      })
+      console.log(this.produtosSuasVendas)
+
     })).pipe(catchError((err)=>{
+      console.log(err)
       GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao carregar a página'
       this.Router.navigate([''])
       return empty()
