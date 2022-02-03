@@ -20,7 +20,8 @@ export class BalancoDeVendasComponent implements OnInit {
   public displayMain: boolean = false
   public totalMesAtual: number
   public vendasTotaisMesAtual: number
-
+  public porcentVendas : number
+  public deltaPorcentVendas: string
   public config: ChartConfiguration<keyof ChartTypeRegistry, (number | ScatterDataPoint | BubbleDataPoint)[], unknown>
 
   ngOnInit(): void {
@@ -37,12 +38,20 @@ export class BalancoDeVendasComponent implements OnInit {
       } else {
         this.config = this.BalancoDeVendasService.config
         new Chart(  this.myChart.nativeElement, this.config)
+
         this.totalMesAtual = this.BalancoDeVendasService.totalMesAtual
         this.vendasTotaisMesAtual = this.BalancoDeVendasService.vendaTotaisMesAtual
+        this.porcentVendas = this.BalancoDeVendasService.porcentVendas
+
+        if(this.porcentVendas >= 0){
+          this.deltaPorcentVendas = 'maior'
+        } else {
+          this.porcentVendas = this.porcentVendas * -1
+          this.deltaPorcentVendas = 'menor'
+        }
+
         this.displayMain = true
       }
-
-
     })
 
   }

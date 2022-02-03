@@ -85,9 +85,10 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
         this.porcentVendas = ((this.vendaTotaisMesAtual - this.vendaTotaisMesAnterior) / this.vendaTotaisMesAnterior) * 100
       } else if (this.vendaTotaisMesAtual < this.vendaTotaisMesAnterior) {
         this.porcentVendas = ((this.vendaTotaisMesAnterior - this.vendaTotaisMesAtual) / this.vendaTotaisMesAnterior) * -100
+      } else if(this.vendaTotaisMesAtual === this.vendaTotaisMesAnterior) {
+        this.porcentVendas = 0
       }
 
-      console.log(this.porcentVendas)
     })).pipe(catchError((err)=>{
       GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao carregar a página'
       this.Router.navigate([''])

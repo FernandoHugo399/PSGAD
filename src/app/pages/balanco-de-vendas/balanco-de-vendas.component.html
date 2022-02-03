@@ -20,8 +20,8 @@
       </div>
 
       <div class="item-statistic">
-          <h3><strong *ngIf="displayMain">20%</strong></h3>
-          <p>maior ás vendas do mês anterior.</p>
+          <h3><strong *ngIf="displayMain">{{porcentVendas}}%</strong></h3>
+          <p>{{deltaPorcentVendas}} do que as vendas do mês anterior.</p>
       </div>
 
       <div class="item-statistic">
