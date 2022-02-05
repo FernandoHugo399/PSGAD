@@ -112,21 +112,21 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
         }else if(this.produtosSuasVendas.length !== 0){
 
-        // Está nesse ciclo o bug \\
-       /*  this.produtosSuasVendas.map((pro)=>{
-          if(pro.nome === e){
-            pro.quantidade ++
-
-          } else {
-            this.produtosSuasVendas.push({
-              nome: e,
-              quantidade: 1
-            })
+          // O bug está aqui \\
+          for(var i = 0; i < this.produtosSuasVendas.length; i++){
+            if(e === this.produtosSuasVendas[i].nome){
+              this.produtosSuasVendas[i].quantidade ++
+              break
+            } else if(e !== this.produtosSuasVendas[i].nome){
+              this.produtosSuasVendas.push({
+                nome: e,
+                quantidade: 1
+              })
+              break
+            }
           }
-
-          }) */
-
         }
+            /***********/
 
       })
       console.log(this.produtosSuasVendas)
