@@ -31,75 +31,85 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
   constructor(private http: HttpClient, private Router: Router) { }
 
+  graphicValues(order: OrderPedido): void {
+    for(var i = 0; i < order.length; i++){
+      let date = ((Date.now() - Date.parse(order.pedidos[i].data_pedido)) / (1000 * 60 * 60 * 24 * 30))
+      let month = new Date((Date.parse(order.pedidos[i].data_pedido))).getMonth()
+      let year = new Date((Date.parse(order.pedidos[i].data_pedido))).getFullYear()
+
+      if(date >= 0 && date < 12){
+        this.meses.map((mes:ChartData)=>{
+          if(mes.mesCount === month){
+            if(month === this.mesAtual){
+              if(year === this.anoAtual){
+                mes.vendas.push(order.pedidos[i])
+                mes.valorTotal += Number(order.pedidos[i].valor_total_pedido)
+              }
+
+            } else {
+              mes.vendas.push(order.pedidos[i])
+              mes.valorTotal += Number(order.pedidos[i].valor_total_pedido)
+            }
+
+          }
+        })
+      }
+    }
+  }
+
+  pedidosMesAnteriorEAtual(): void{
+    this.meses.map((mes)=>{
+      if(mes.mesCount === this.mesAtual){
+        this.produtosVendidosMesAtual = mes.vendas.map((product)=>{
+          return product.produto
+        })
+        this.totalMesAtual = mes.valorTotal
+        this.vendaTotaisMesAtual = mes.vendas.length
+
+      } if(mes.mesCount === 11 && this.mesAtual === 0 ){
+        this.totalMesAnterior = mes.valorTotal
+        this.vendaTotaisMesAnterior = mes.vendas.length
+
+      }else if(mes.mesCount === this.mesAtual - 1){
+        this.totalMesAnterior = mes.valorTotal
+        this.vendaTotaisMesAnterior = mes.vendas.length
+
+      }
+      this.config.data.datasets[0].data.push(mes.valorTotal)
+
+    })
+  }
+
+  porcentagemDeVendas(porcentVendas: number, vendaTotaisMesAtual: number, vendaTotaisMesAnterior: number): void{
+    if(vendaTotaisMesAnterior <= 0){
+      porcentVendas = vendaTotaisMesAtual * 100
+    } else if (vendaTotaisMesAtual <= 0){
+      porcentVendas = vendaTotaisMesAnterior * -100
+    } else if (vendaTotaisMesAtual > vendaTotaisMesAnterior) {
+      porcentVendas = ((vendaTotaisMesAtual - vendaTotaisMesAnterior) / vendaTotaisMesAnterior) * 100
+    } else if (vendaTotaisMesAtual < vendaTotaisMesAnterior) {
+      porcentVendas = ((vendaTotaisMesAnterior - vendaTotaisMesAtual) / vendaTotaisMesAnterior) * -100
+    } else if(vendaTotaisMesAtual === vendaTotaisMesAnterior) {
+      porcentVendas = 0
+    }
+    this.porcentVendas = porcentVendas
+  }
+
   chartValues(): Observable<OrderPedido>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
     return this.http.get<OrderPedido>(`${this.baseURL}/order/completed`, {headers: headers}).pipe(tap((res)=>{
 
       this.config.data.datasets[0].data = []
-
-      this.meses.map((e)=>{
-        e.vendas = []
-        e.valorTotal = 0
+      this.meses.map((mes)=>{
+        mes.vendas = []
+        mes.valorTotal = 0
       })
+      this.graphicValues(res)
+      this.pedidosMesAnteriorEAtual()
+      this.porcentagemDeVendas(this.porcentVendas, this.vendaTotaisMesAtual, this.vendaTotaisMesAnterior)
 
-      for(var i = 0; i < res.length; i++){
-        let date = ((Date.now() - Date.parse(res.pedidos[i].data_pedido)) / (1000 * 60 * 60 * 24 * 30))
-        let month = new Date((Date.parse(res.pedidos[i].data_pedido))).getMonth()
-        let year = new Date((Date.parse(res.pedidos[i].data_pedido))).getFullYear()
 
-        if(date >= 0 && date < 12){
-          this.meses.map((e:ChartData)=>{
-            if(e.mesCount === month){
-              if(month === this.mesAtual){
-                if(year === this.anoAtual){
-                  e.vendas.push(res.pedidos[i])
-                  e.valorTotal += Number(res.pedidos[i].valor_total_pedido)
-                }
-
-              } else {
-                e.vendas.push(res.pedidos[i])
-                e.valorTotal += Number(res.pedidos[i].valor_total_pedido)
-              }
-
-            }
-          })
-        }
-      }
-
-      this.meses.map((e)=>{
-        if(e.mesCount === this.mesAtual){
-          this.produtosVendidosMesAtual = e.vendas.map((product)=>{
-            return product.produto
-          })
-          this.totalMesAtual = e.valorTotal
-          this.vendaTotaisMesAtual = e.vendas.length
-
-        } if(e.mesCount === 11 && this.mesAtual === 0 ){
-          this.totalMesAnterior = e.valorTotal
-          this.vendaTotaisMesAnterior = e.vendas.length
-
-        }else if(e.mesCount === this.mesAtual - 1){
-          this.totalMesAnterior = e.valorTotal
-          this.vendaTotaisMesAnterior = e.vendas.length
-
-        }
-        this.config.data.datasets[0].data.push(e.valorTotal)
-
-      })
-
-      if(this.vendaTotaisMesAnterior <= 0){
-        this.porcentVendas = this.vendaTotaisMesAtual * 100
-      } else if (this.vendaTotaisMesAtual <= 0){
-        this.porcentVendas = this.vendaTotaisMesAnterior * -100
-      } else if (this.vendaTotaisMesAtual > this.vendaTotaisMesAnterior) {
-        this.porcentVendas = ((this.vendaTotaisMesAtual - this.vendaTotaisMesAnterior) / this.vendaTotaisMesAnterior) * 100
-      } else if (this.vendaTotaisMesAtual < this.vendaTotaisMesAnterior) {
-        this.porcentVendas = ((this.vendaTotaisMesAnterior - this.vendaTotaisMesAtual) / this.vendaTotaisMesAnterior) * -100
-      } else if(this.vendaTotaisMesAtual === this.vendaTotaisMesAnterior) {
-        this.porcentVendas = 0
-      }
-
-      this.produtosVendidosMesAtual.push('pão integral com grãos')
+      /* this.produtosVendidosMesAtual.push('pão integral com grãos')
       this.produtosVendidosMesAtual.push('doce de chocolate amargo')
       this.produtosVendidosMesAtual.push('doce de chocolate amargo')
       console.log(this.produtosVendidosMesAtual)
@@ -114,7 +124,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
         if(this.produtosSuasVendas.some(res => res.nome === e)){
           this.produtosSuasVendas.some(res => {
-            console.log(res)
+            res.quantidade ++
           })
 
         } else {
@@ -126,7 +136,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
         }
       })
-      console.log(this.produtosSuasVendas)
+      console.log(this.produtosSuasVendas) */
 
     })).pipe(catchError((err)=>{
       console.log(err)
