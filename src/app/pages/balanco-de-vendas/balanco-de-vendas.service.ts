@@ -22,7 +22,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
   public produtosVendidosMesAtual: string[]
   public produtosSuasVendas: {
     nome: string
-    quantidade : number
+    quantidade? : number
   }[] = []
 
   public mesAtual = new Date().getMonth()
@@ -112,22 +112,19 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
         }else if(this.produtosSuasVendas.length !== 0){
 
-          // O bug está aqui \\
-          for(var i = 0; i < this.produtosSuasVendas.length; i++){
-            if(e === this.produtosSuasVendas[i].nome){
-              this.produtosSuasVendas[i].quantidade ++
-              break
-            } else if(e !== this.produtosSuasVendas[i].nome){
-              this.produtosSuasVendas.push({
-                nome: e,
-                quantidade: 1
-              })
-              break
-            }
-          }
-        }
-            /***********/
+        if(this.produtosSuasVendas.some(res => res.nome === e)){
+          this.produtosSuasVendas.some(res => {
+            console.log(res)
+          })
 
+        } else {
+          this.produtosSuasVendas.push({
+            nome: e,
+            quantidade: 1
+          })
+        }
+
+        }
       })
       console.log(this.produtosSuasVendas)
 
