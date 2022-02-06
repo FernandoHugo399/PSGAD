@@ -16,7 +16,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
   private meses = this.ChartJsData.meses
   public totalMesAtual: number
   public vendaTotaisMesAtual: number
-  private totalMesAnterior: number
+  public totalMesAnterior: number
   private vendaTotaisMesAnterior: number
   private produtosVendidosMesAtual: string[]
 
@@ -91,13 +91,13 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
   porcentagemDeVendas(porcentVendas: number, vendaTotaisMesAtual: number, vendaTotaisMesAnterior: number): void{
     if(vendaTotaisMesAnterior <= 0){
-      porcentVendas = vendaTotaisMesAtual * 100
+      porcentVendas = Math.round(vendaTotaisMesAtual * 100)
     } else if (vendaTotaisMesAtual <= 0){
-      porcentVendas = vendaTotaisMesAnterior * -100
+      porcentVendas = Math.round(vendaTotaisMesAnterior * -100)
     } else if (vendaTotaisMesAtual > vendaTotaisMesAnterior) {
-      porcentVendas = ((vendaTotaisMesAtual - vendaTotaisMesAnterior) / vendaTotaisMesAnterior) * 100
+      porcentVendas = Math.round(((vendaTotaisMesAtual - vendaTotaisMesAnterior) / vendaTotaisMesAnterior) * 100)
     } else if (vendaTotaisMesAtual < vendaTotaisMesAnterior) {
-      porcentVendas = ((vendaTotaisMesAnterior - vendaTotaisMesAtual) / vendaTotaisMesAnterior) * -100
+      porcentVendas = Math.round(((vendaTotaisMesAnterior - vendaTotaisMesAtual) / vendaTotaisMesAnterior) * -100)
     } else if(vendaTotaisMesAtual === vendaTotaisMesAnterior) {
       porcentVendas = 0
     }
@@ -124,7 +124,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
   }
 
   porcentProdutMaisVendasNoMes(produtoComMaisVendas: number, vendaTotaisMesAtual: number): void{
-    this.porcentProdutoComMaisVendas = (produtoComMaisVendas * 100) / vendaTotaisMesAtual
+    this.porcentProdutoComMaisVendas = Math.round((produtoComMaisVendas * 100) / vendaTotaisMesAtual)
   }
 
   chartValues(): Observable<OrderPedido>{
