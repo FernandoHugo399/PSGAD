@@ -36,4 +36,6 @@ export interface IBalancoDeVendasService{
   graphicValues(order: OrderPedido): void
   pedidosMesAnteriorEAtual(): void
   porcentagemDeVendas(porcentVendas: number, vendaTotaisMesAtual: number, vendaTotaisMesAnterior: number): void
+  produtoComMaisVendasNoMes(): void
+  porcentProdutMaisVendasNoMes(produtoComMaisVendas: number, vendaTotaisMesAtual: number): void
 }

@@ -12,22 +12,31 @@ import GlobalVarsLogin from '../login/login.model';
 export class BalancoDeVendasService implements IBalancoDeVendasService {
   private ChartJsData = new ChartJsData()
   public config = this.ChartJsData.config
-  public baseURL = GlobalVarsLogin.baseURL
-  public meses = this.ChartJsData.meses
+  private baseURL = GlobalVarsLogin.baseURL
+  private meses = this.ChartJsData.meses
   public totalMesAtual: number
   public vendaTotaisMesAtual: number
-  public totalMesAnterior: number
-  public vendaTotaisMesAnterior: number
+  private totalMesAnterior: number
+  private vendaTotaisMesAnterior: number
+  private produtosVendidosMesAtual: string[]
 
-  public produtosVendidosMesAtual: string[]
-  public produtosSuasVendas: {
+  private produtosSuasVendas: {
     nome: string
-    quantidade? : number
+    quantidade : number
   }[] = []
 
-  public mesAtual = new Date().getMonth()
-  public anoAtual = new Date().getFullYear()
+  private produtoComMaisVendas: {
+    nome: string
+    quantidade: number
+  } = {
+    nome: '',
+    quantidade : 0
+  }
+
+  private mesAtual = new Date().getMonth()
+  private anoAtual = new Date().getFullYear()
   public porcentVendas: number
+  public porcentProdutoComMaisVendas: number
 
   constructor(private http: HttpClient, private Router: Router) { }
 
@@ -95,48 +104,45 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
     this.porcentVendas = porcentVendas
   }
 
+  produtoComMaisVendasNoMes(): void{
+    const filterProdutosMesAtual = [...new Set(this.produtosVendidosMesAtual)]
+    filterProdutosMesAtual.map((product)=>{
+      this.produtosSuasVendas.push({
+        nome: product,
+        quantidade: this.produtosVendidosMesAtual.filter(e => e === product).length
+      })
+    })
+
+    this.produtosSuasVendas.map((product)=>{
+      if(product.quantidade > this.produtoComMaisVendas.quantidade){
+        this.produtoComMaisVendas ={
+          nome: product.nome,
+          quantidade: product.quantidade
+        }
+      }
+    })
+  }
+
+  porcentProdutMaisVendasNoMes(produtoComMaisVendas: number, vendaTotaisMesAtual: number): void{
+    this.porcentProdutoComMaisVendas = (produtoComMaisVendas * 100) / vendaTotaisMesAtual
+  }
+
   chartValues(): Observable<OrderPedido>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
     return this.http.get<OrderPedido>(`${this.baseURL}/order/completed`, {headers: headers}).pipe(tap((res)=>{
 
       this.config.data.datasets[0].data = []
+      this.produtosSuasVendas = []
       this.meses.map((mes)=>{
         mes.vendas = []
         mes.valorTotal = 0
       })
+
       this.graphicValues(res)
       this.pedidosMesAnteriorEAtual()
       this.porcentagemDeVendas(this.porcentVendas, this.vendaTotaisMesAtual, this.vendaTotaisMesAnterior)
-
-
-      /* this.produtosVendidosMesAtual.push('pão integral com grãos')
-      this.produtosVendidosMesAtual.push('doce de chocolate amargo')
-      this.produtosVendidosMesAtual.push('doce de chocolate amargo')
-      console.log(this.produtosVendidosMesAtual)
-      this.produtosVendidosMesAtual.map((e)=>{
-        if(this.produtosSuasVendas.length === 0){
-          this.produtosSuasVendas.push({
-            nome: e,
-            quantidade: 1
-          })
-
-        }else if(this.produtosSuasVendas.length !== 0){
-
-        if(this.produtosSuasVendas.some(res => res.nome === e)){
-          this.produtosSuasVendas.some(res => {
-            res.quantidade ++
-          })
-
-        } else {
-          this.produtosSuasVendas.push({
-            nome: e,
-            quantidade: 1
-          })
-        }
-
-        }
-      })
-      console.log(this.produtosSuasVendas) */
+      this.produtoComMaisVendasNoMes()
+      this.porcentProdutMaisVendasNoMes(this.produtoComMaisVendas.quantidade, this.vendaTotaisMesAtual)
 
     })).pipe(catchError((err)=>{
       console.log(err)
