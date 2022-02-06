@@ -46,7 +46,7 @@ export class BalancoDeVendasComponent implements OnInit {
         this.porcentVendas = this.BalancoDeVendasService.porcentVendas
         this.porcentProdutoComMaisVendas = this.BalancoDeVendasService.porcentProdutoComMaisVendas
         this.produtoComMaisVendas = this.BalancoDeVendasService.produtoComMaisVendas.nome
-        console.log(this.produtoComMaisVendas)
+
         if(this.porcentVendas >= 0){
           this.deltaPorcentVendas = 'maior'
         } else {
