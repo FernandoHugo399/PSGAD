@@ -17,7 +17,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
   public currentMonthTotal: number
   public currentMonthTotalSales: number
   public totalPreviousMonth: number
-  private vendaTotaisMesAnterior: number
+  private totalOrderPreviousMonth: number
   private previousMonthTotalSales: string[]
   private productAndTheirSales: {
     name: string
@@ -74,19 +74,19 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
         this.previousMonthTotalSales = month.vendas.map((product)=>{
           return product.produto
         })
-        this.currentMonthTotal = month.valorTotal
+        this.currentMonthTotal = Number(month.valorTotal.toFixed(2))
         this.currentMonthTotalSales = month.vendas.length
 
       } if(month.mesCount === 11 && this.atualMonth === 0 ){
-        this.totalPreviousMonth = month.valorTotal
-        this.vendaTotaisMesAnterior = month.vendas.length
+        this.totalPreviousMonth = Number(month.valorTotal.toFixed(2))
+        this. totalOrderPreviousMonth = month.vendas.length
 
       }else if(month.mesCount === this.atualMonth - 1){
-        this.totalPreviousMonth = month.valorTotal
-        this.vendaTotaisMesAnterior = month.vendas.length
+        this.totalPreviousMonth = Number(month.valorTotal.toFixed(2))
+        this. totalOrderPreviousMonth = month.vendas.length
 
       }
-      this.config.data.datasets[0].data.push(month.valorTotal)
+      this.config.data.datasets[0].data.push(Number(month.valorTotal.toFixed(2)))
 
     })
   }
@@ -150,7 +150,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
       this.valuesOfGraphic(res)
       this.previousAndCorrentMonthOrders()
-      this.percentageOfOrders(this.percentageSales, this.currentMonthTotalSales, this.vendaTotaisMesAnterior)
+      this.percentageOfOrders(this.percentageSales, this.currentMonthTotalSales, this.totalOrderPreviousMonth)
       this.productWithMoreOrdersInMonth()
       this.percentageProductMoreSalesInMonth(this.productWithMoreSales.length, this.currentMonthTotalSales)
 
