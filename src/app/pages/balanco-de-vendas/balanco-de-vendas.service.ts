@@ -16,15 +16,13 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
   private months = this.ChartJsData.month
   public currentMonthTotal: number
   public currentMonthTotalSales: number
-  public totalMesAnterior: number
+  public totalPreviousMonth: number
   private vendaTotaisMesAnterior: number
   private previousMonthTotalSales: string[]
-
   private productAndTheirSales: {
     nome: string
     quantidade : number
   }[] = []
-
   public productWithMoreSales: {
     nome: string
     quantidade: number
@@ -71,24 +69,24 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
 
   previousAndCorrentMonthOrders(): void{
-    this.months.map((mes)=>{
-      if(mes.mesCount === this.atualMonth){
-        this.previousMonthTotalSales = mes.vendas.map((product)=>{
+    this.months.map((month)=>{
+      if(month.mesCount === this.atualMonth){
+        this.previousMonthTotalSales = month.vendas.map((product)=>{
           return product.produto
         })
-        this.currentMonthTotal = mes.valorTotal
-        this.currentMonthTotalSales = mes.vendas.length
+        this.currentMonthTotal = month.valorTotal
+        this.currentMonthTotalSales = month.vendas.length
 
-      } if(mes.mesCount === 11 && this.atualMonth === 0 ){
-        this.totalMesAnterior = mes.valorTotal
-        this.vendaTotaisMesAnterior = mes.vendas.length
+      } if(month.mesCount === 11 && this.atualMonth === 0 ){
+        this.totalPreviousMonth = month.valorTotal
+        this.vendaTotaisMesAnterior = month.vendas.length
 
-      }else if(mes.mesCount === this.atualMonth - 1){
-        this.totalMesAnterior = mes.valorTotal
-        this.vendaTotaisMesAnterior = mes.vendas.length
+      }else if(month.mesCount === this.atualMonth - 1){
+        this.totalPreviousMonth = month.valorTotal
+        this.vendaTotaisMesAnterior = month.vendas.length
 
       }
-      this.config.data.datasets[0].data.push(mes.valorTotal)
+      this.config.data.datasets[0].data.push(month.valorTotal)
 
     })
   }
