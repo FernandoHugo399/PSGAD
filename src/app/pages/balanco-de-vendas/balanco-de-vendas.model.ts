@@ -32,10 +32,10 @@ export interface OrderPedido{
 
 
 export interface IBalancoDeVendasService{
-  chartValues(): Observable<OrderPedido>
-  graphicValues(order: OrderPedido): void
-  pedidosMesAnteriorEAtual(): void
-  porcentagemDeVendas(porcentVendas: number, vendaTotaisMesAtual: number, vendaTotaisMesAnterior: number): void
-  produtoComMaisVendasNoMes(): void
-  porcentProdutMaisVendasNoMes(produtoComMaisVendas: number, vendaTotaisMesAtual: number): void
+  createGraphic(): Observable<OrderPedido>
+  valuesOfGraphic(order: OrderPedido): void
+  previousAndCorrentMonthOrders(): void
+  percentageOfOrders(porcentVendas: number, vendaTotaisMesAtual: number, vendaTotaisMesAnterior: number): void
+  productWithMoreOrdersInMonth(): void
+  percentageProductMoreSalesInMonth(produtoComMaisVendas: number, vendaTotaisMesAtual: number): void
 }

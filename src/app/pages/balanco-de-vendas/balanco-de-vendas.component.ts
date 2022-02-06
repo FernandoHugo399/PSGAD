@@ -18,16 +18,16 @@ export class BalancoDeVendasComponent implements OnInit {
     Chart.register(...registerables)
   }
   public displayMain: boolean = false
-  public totalMesAtual: number
-  public vendasTotaisMesAtual: number
-  public porcentVendas: number
-  public porcentProdutoComMaisVendas: number
-  public produtoComMaisVendas: string
-  public deltaPorcentVendas: string
+  public currentMonthTotal: number
+  public currentMonthTotalSales: number
+  public percentageSales: number
+  public percentageProductMoreSales: number
+  public productWithMoreSales: string
+  public deltaPercentageSales: string
   public config: ChartConfiguration<keyof ChartTypeRegistry, (number | ScatterDataPoint | BubbleDataPoint)[], unknown>
 
   ngOnInit(): void {
-    this.BalancoDeVendasService.chartValues().subscribe((res)=>{
+    this.BalancoDeVendasService.createGraphic().subscribe((res)=>{
 
       if(res.error){
         GlobalVarsLogin.asMessageError = res.message
@@ -41,19 +41,19 @@ export class BalancoDeVendasComponent implements OnInit {
         this.config = this.BalancoDeVendasService.config
         new Chart(  this.myChart.nativeElement, this.config)
 
-        this.totalMesAtual = this.BalancoDeVendasService.totalMesAtual
-        this.vendasTotaisMesAtual = this.BalancoDeVendasService.vendaTotaisMesAtual
-        this.porcentVendas = this.BalancoDeVendasService.porcentVendas
-        this.porcentProdutoComMaisVendas = this.BalancoDeVendasService.porcentProdutoComMaisVendas
-        this.produtoComMaisVendas = this.BalancoDeVendasService.produtoComMaisVendas.nome
-        if(!this.porcentProdutoComMaisVendas){
-          this.produtoComMaisVendas = 'Indefinido'
+        this.currentMonthTotal = this.BalancoDeVendasService.currentMonthTotal
+        this.currentMonthTotalSales = this.BalancoDeVendasService. currentMonthTotalSales
+        this.percentageSales = this.BalancoDeVendasService.percentageSales
+        this.percentageProductMoreSales = this.BalancoDeVendasService.percentageProductMoreSales
+        this.productWithMoreSales = this.BalancoDeVendasService.productWithMoreSales.nome
+        if(!this.percentageProductMoreSales){
+          this.productWithMoreSales = 'Indefinido'
         }
-        if(this.porcentVendas >= 0){
-          this.deltaPorcentVendas = 'maior'
+        if(this.percentageSales >= 0){
+          this.deltaPercentageSales = 'maior'
         } else {
-          this.porcentVendas = this.porcentVendas * -1
-          this.deltaPorcentVendas = 'menor'
+          this.percentageSales = this.percentageSales * -1
+          this.deltaPercentageSales = 'menor'
         }
 
         this.displayMain = true
