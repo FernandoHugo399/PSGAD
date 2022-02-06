@@ -45,7 +45,7 @@ export class BalancoDeVendasComponent implements OnInit {
         this.currentMonthTotalSales = this.BalancoDeVendasService. currentMonthTotalSales
         this.percentageSales = this.BalancoDeVendasService.percentageSales
         this.percentageProductMoreSales = this.BalancoDeVendasService.percentageProductMoreSales
-        this.productWithMoreSales = this.BalancoDeVendasService.productWithMoreSales.nome
+        this.productWithMoreSales = this.BalancoDeVendasService.productWithMoreSales.name
         if(!this.percentageProductMoreSales){
           this.productWithMoreSales = 'Indefinido'
         }

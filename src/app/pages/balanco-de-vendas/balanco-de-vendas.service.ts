@@ -20,15 +20,15 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
   private vendaTotaisMesAnterior: number
   private previousMonthTotalSales: string[]
   private productAndTheirSales: {
-    nome: string
-    quantidade : number
+    name: string
+    length : number
   }[] = []
   public productWithMoreSales: {
-    nome: string
-    quantidade: number
+    name: string
+    length: number
   } = {
-    nome: '',
-    quantidade : 0
+    name: '',
+    length : 0
   }
 
   private atualMonth = new Date().getMonth()
@@ -114,16 +114,16 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
     const filterProdutosMesAtual = [...new Set(this.previousMonthTotalSales)]
     filterProdutosMesAtual.map((product)=>{
       this.productAndTheirSales.push({
-        nome: product,
-        quantidade: this.previousMonthTotalSales.filter(e => e === product).length
+        name: product,
+        length: this.previousMonthTotalSales.filter(e => e === product).length
       })
     })
 
     this.productAndTheirSales.map((product)=>{
-      if(product.quantidade > this.productWithMoreSales.quantidade){
+      if(product.length > this.productWithMoreSales.length){
         this.productWithMoreSales ={
-          nome: product.nome,
-          quantidade: product.quantidade
+          name: product.name,
+          length: product.length
         }
       }
     })
@@ -152,7 +152,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
       this.previousAndCorrentMonthOrders()
       this.percentageOfOrders(this.percentageSales, this.currentMonthTotalSales, this.vendaTotaisMesAnterior)
       this.productWithMoreOrdersInMonth()
-      this.percentageProductMoreSalesInMonth(this.productWithMoreSales.quantidade, this.currentMonthTotalSales)
+      this.percentageProductMoreSalesInMonth(this.productWithMoreSales.length, this.currentMonthTotalSales)
 
     })).pipe(catchError((err)=>{
       console.log(err)
