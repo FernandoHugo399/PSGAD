@@ -47,17 +47,17 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
       let year = new Date((Date.parse(order.pedidos[i].data_pedido))).getFullYear()
 
       if(date >= 0 && date < 12){
-        this.months.map((mes:ChartData)=>{
-          if(mes.mesCount === month){
+        this.months.map((Month:ChartData)=>{
+          if(Month.mesCount === month){
             if(month === this.atualMonth){
               if(year === this.atualYear){
-                mes.vendas.push(order.pedidos[i])
-                mes.valorTotal += Number(order.pedidos[i].valor_total_pedido)
+                Month.vendas.push(order.pedidos[i])
+                Month.valorTotal += Number(order.pedidos[i].valor_total_pedido)
               }
 
             } else {
-              mes.vendas.push(order.pedidos[i])
-              mes.valorTotal += Number(order.pedidos[i].valor_total_pedido)
+              Month.vendas.push(order.pedidos[i])
+              Month.valorTotal += Number(order.pedidos[i].valor_total_pedido)
             }
 
           }
@@ -143,9 +143,9 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
       this.config.data.datasets[0].data = []
       this.productAndTheirSales = []
-      this.months.map((mes)=>{
-        mes.vendas = []
-        mes.valorTotal = 0
+      this.months.map((month)=>{
+        month.vendas = []
+        month.valorTotal = 0
       })
 
       this.valuesOfGraphic(res)
