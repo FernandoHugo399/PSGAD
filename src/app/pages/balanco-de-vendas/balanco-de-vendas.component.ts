@@ -20,7 +20,9 @@ export class BalancoDeVendasComponent implements OnInit {
   public displayMain: boolean = false
   public totalMesAtual: number
   public vendasTotaisMesAtual: number
-  public porcentVendas : number
+  public porcentVendas: number
+  public porcentProdutoComMaisVendas: number
+  public produtoComMaisVendas: string
   public deltaPorcentVendas: string
   public config: ChartConfiguration<keyof ChartTypeRegistry, (number | ScatterDataPoint | BubbleDataPoint)[], unknown>
 
@@ -42,7 +44,9 @@ export class BalancoDeVendasComponent implements OnInit {
         this.totalMesAtual = this.BalancoDeVendasService.totalMesAtual
         this.vendasTotaisMesAtual = this.BalancoDeVendasService.vendaTotaisMesAtual
         this.porcentVendas = this.BalancoDeVendasService.porcentVendas
-
+        this.porcentProdutoComMaisVendas = this.BalancoDeVendasService.porcentProdutoComMaisVendas
+        this.produtoComMaisVendas = this.BalancoDeVendasService.produtoComMaisVendas.nome
+        console.log(this.produtoComMaisVendas)
         if(this.porcentVendas >= 0){
           this.deltaPorcentVendas = 'maior'
         } else {

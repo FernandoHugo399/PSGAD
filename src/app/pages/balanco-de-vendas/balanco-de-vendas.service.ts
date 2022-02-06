@@ -25,7 +25,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
     quantidade : number
   }[] = []
 
-  private produtoComMaisVendas: {
+  public produtoComMaisVendas: {
     nome: string
     quantidade: number
   } = {
