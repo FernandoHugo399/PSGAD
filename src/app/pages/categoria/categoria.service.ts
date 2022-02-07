@@ -12,7 +12,7 @@ export class CategoriaService implements ICategoriaService{
   baseURL = GlobalVarsLogin.baseURL
   constructor(private Router:Router, private http: HttpClient) { }
 
-  getCategorias(): Observable<ICategoria>{
+  getCategory(): Observable<ICategoria>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
     return this.http.get<ICategoria>(`${this.baseURL}/categories`, {headers: headers}).pipe(catchError((err)=>{
       GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao carregar a página'
@@ -22,12 +22,12 @@ export class CategoriaService implements ICategoriaService{
     }))
   }
 
-  createCategoria(nome: string): Observable<IRequest>{
+  createCategory(nome: string): Observable<IRequest>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
     return this.http.post<IRequest>(`${this.baseURL}/categories`, {nome: nome}, {headers: headers})
   }
 
-  deleteCategoria(id:number): Observable<IRequest>{
+  deleteCategory(id:number): Observable<IRequest>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
     return this.http.delete<IRequest>(`${this.baseURL}/categories/${id}`, {headers: headers})
   }

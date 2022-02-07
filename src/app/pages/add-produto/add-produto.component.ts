@@ -16,7 +16,7 @@ export class AddProdutoComponent implements OnInit {
   constructor(private AddProdutoService: AddProdutoService, private router: Router) { }
 
   public errorMessage = GlobalVarsLogin.asMessageError;
-  public categorias: ICategoria;
+  public categories: ICategoria;
   public Product: IProduct = {
     nome: '',
     preco: '',
@@ -39,7 +39,7 @@ export class AddProdutoComponent implements OnInit {
         this.router.navigate(['login'])
 
       } else {
-        this.categorias = res
+        this.categories = res
       }
     })
   }

@@ -22,7 +22,7 @@ export class CategoriaComponent implements OnInit {
   ngOnInit(): void {
     GlobalVarsLogin.asMessageError = ''
     GlobalVarsLogin.asMessageSuccess = ''
-    this.CategoriaService.getCategorias().subscribe((res)=>{
+    this.CategoriaService.getCategory().subscribe((res)=>{
       if(res.error){
         this.errorMessage = 'Ocorreu um erro ao listar as categorias'
 
@@ -37,7 +37,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   createCategory(): void{
-    this.CategoriaService.createCategoria(this.newCategory).pipe(catchError((err)=>{
+    this.CategoriaService.createCategory(this.newCategory).pipe(catchError((err)=>{
       this.errorMessage = 'Ocorreu um erro interno ao criar o produto'
       return empty()
 
@@ -56,7 +56,7 @@ export class CategoriaComponent implements OnInit {
         this.successMessage = res.message
         this.newCategory = ''
 
-        this.CategoriaService.getCategorias().subscribe((res)=>{
+        this.CategoriaService.getCategory().subscribe((res)=>{
           if(res.error){
             this.successMessage = ''
             this.errorMessage = 'Ocorreu um erro ao listar as categorias'
@@ -74,7 +74,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   deleteCategory(id: number){
-   this.CategoriaService.deleteCategoria(id).pipe(catchError((err)=>{
+   this.CategoriaService.deleteCategory(id).pipe(catchError((err)=>{
     this.successMessage = ''
     this.errorMessage = 'Ocorreu um erro interno ao deletar a categoria. Verifique se não está ligada a algum produto'
     return empty()
@@ -93,7 +93,7 @@ export class CategoriaComponent implements OnInit {
       this.errorMessage = ''
       this.successMessage = res.message
 
-      this.CategoriaService.getCategorias().subscribe((res)=>{
+      this.CategoriaService.getCategory().subscribe((res)=>{
         if(res.error){
           this.successMessage = ''
           this.errorMessage = 'Ocorreu um erro ao listar as categorias'
