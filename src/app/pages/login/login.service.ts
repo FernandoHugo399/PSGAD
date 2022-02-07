@@ -1,4 +1,4 @@
-import GlobalVarsLogin  from 'src/app/pages/login/login.model';
+import GlobalVars from '../../services/global/global.model'
 import { IProcessLogin, ILogin, ILoginService } from './login.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService implements ILoginService {
-  baseUrl =  GlobalVarsLogin.baseURL
+  baseUrl =  GlobalVars.baseURL
 
   constructor(private http: HttpClient, private Router: Router) { }
 

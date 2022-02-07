@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { ICategoria, IProduct } from './add-produto.model';
 import { AddProdutoService } from './add-produto.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import GlobalVarsLogin from '../login/login.model';
+import GlobalVars from '../../services/global/global.model'
 
 @Component({
   selector: 'app-add-produto',
@@ -15,7 +15,7 @@ export class AddProdutoComponent implements OnInit {
   @ViewChild('inpFiles') inpFiles: {nativeElement: HTMLInputElement}
   constructor(private AddProdutoService: AddProdutoService, private router: Router) { }
 
-  public errorMessage = GlobalVarsLogin.asMessageError;
+  public errorMessage = GlobalVars.asMessageError;
   public categories: ICategoria;
   public Product: IProduct = {
     nome: '',
@@ -27,15 +27,15 @@ export class AddProdutoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    GlobalVarsLogin.asMessageError = ''
+    GlobalVars.asMessageError = ''
 
     this.AddProdutoService.getCategorias().subscribe((res)=>{
       if(res.error){
-        GlobalVarsLogin.asMessageError = res.message
+        GlobalVars.asMessageError = res.message
         this.router.navigate([''])
 
       }else if (res.authError){
-        GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+        GlobalVars.asMessageError = 'Sua sessão expirou'
         this.router.navigate(['login'])
 
       } else {
@@ -68,11 +68,11 @@ export class AddProdutoComponent implements OnInit {
         this.clearPreview()
 
       }else if (res.authError){
-        GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+        GlobalVars.asMessageError = 'Sua sessão expirou'
         this.router.navigate(['login'])
 
       } else {
-        GlobalVarsLogin.asMessageSuccess = 'Produto criado com sucesso'
+        GlobalVars.asMessageSuccess = 'Produto criado com sucesso'
         this.router.navigate(['catalogo'])
       }
     })

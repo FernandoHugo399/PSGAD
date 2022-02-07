@@ -1,9 +1,8 @@
 import { Router } from '@angular/router';
-import  GlobalVarsLogin  from 'src/app/pages/login/login.model';
 import { BalancoDeVendasService } from './balanco-de-vendas.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart, registerables, BubbleDataPoint, ChartConfiguration, ChartTypeRegistry, ScatterDataPoint } from 'chart.js';
-
+import GlobalVars from '../../services/global/global.model'
 
 @Component({
   selector: 'app-balanco-de-vendas',
@@ -30,11 +29,11 @@ export class BalancoDeVendasComponent implements OnInit {
     this.BalancoDeVendasService.createGraphic().subscribe((res)=>{
 
       if(res.error){
-        GlobalVarsLogin.asMessageError = res.message
+        GlobalVars.asMessageError = res.message
         this.Router.navigate([''])
 
       }else if (res.authError){
-        GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+        GlobalVars.asMessageError = 'Sua sessão expirou'
         this.Router.navigate(['login'])
 
       } else {
@@ -42,11 +41,12 @@ export class BalancoDeVendasComponent implements OnInit {
         new Chart(  this.myChart.nativeElement, this.config)
 
         this.currentMonthTotal = this.BalancoDeVendasService.currentMonthTotal
-        this.currentMonthTotalSales = this.BalancoDeVendasService. currentMonthTotalSales
+        this.currentMonthTotalSales = this.BalancoDeVendasService.currentMonthTotalSales
         this.percentageSales = this.BalancoDeVendasService.percentageSales
         this.percentageProductMoreSales = this.BalancoDeVendasService.percentageProductMoreSales
         this.productWithMoreSales = this.BalancoDeVendasService.productWithMoreSales.name
         if(!this.percentageProductMoreSales){
+          this.percentageProductMoreSales = 0
           this.productWithMoreSales = 'Indefinido'
         }
         if(this.percentageSales >= 0){

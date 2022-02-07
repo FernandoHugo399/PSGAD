@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, tap, catchError, empty } from 'rxjs';
 import { IBalancoDeVendasService, OrderPedido, ChartData } from './balanco-de-vendas.model';
 import { ChartJsData } from './chart.data';
-import GlobalVarsLogin from '../login/login.model';
+import GlobalVars from '../../services/global/global.model'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import GlobalVarsLogin from '../login/login.model';
 export class BalancoDeVendasService implements IBalancoDeVendasService {
   private ChartJsData = new ChartJsData()
   public config = this.ChartJsData.config
-  private baseURL = GlobalVarsLogin.baseURL
+  private baseURL = GlobalVars.baseURL
   private months = this.ChartJsData.month
   public currentMonthTotal: number
   public currentMonthTotalSales: number
@@ -156,7 +156,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
     })).pipe(catchError((err)=>{
       console.log(err)
-      GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao carregar a página'
+      GlobalVars.asMessageError = 'Ocorreu um erro ao carregar a página'
       this.Router.navigate([''])
       return empty()
     }))

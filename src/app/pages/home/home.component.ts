@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { IOrders } from './home.model';
 import { HomeService } from './home.service';
 import { Component, OnInit } from '@angular/core';
-import GlobalVarsLogin from '../login/login.model';
+import GlobalVars from '../../services/global/global.model'
 
 @Component({
   selector: 'app-home',
@@ -10,20 +10,20 @@ import GlobalVarsLogin from '../login/login.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public errorMessage = GlobalVarsLogin.asMessageError
+  public errorMessage = GlobalVars.asMessageError
   orders: IOrders;
 
   constructor(private HomeService: HomeService, private Router: Router) { }
 
   public ngOnInit(): void{
-    GlobalVarsLogin.asMessageError = ''
+    GlobalVars.asMessageError = ''
 
     this.HomeService.pendingOrders().subscribe((res)=>{
       if(res.error){
         this.errorMessage = res.message
 
       } else if (res.authError){
-        GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+        GlobalVars.asMessageError = 'Sua sessão expirou'
         this.Router.navigate(['login'])
       }
        else {

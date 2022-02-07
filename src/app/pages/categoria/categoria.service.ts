@@ -3,19 +3,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, empty } from 'rxjs';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import GlobalVarsLogin from '../login/login.model';
+import GlobalVars from '../../services/global/global.model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriaService implements ICategoriaService{
-  baseURL = GlobalVarsLogin.baseURL
+  baseURL = GlobalVars.baseURL
   constructor(private Router:Router, private http: HttpClient) { }
 
   getCategory(): Observable<ICategoria>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
     return this.http.get<ICategoria>(`${this.baseURL}/categories`, {headers: headers}).pipe(catchError((err)=>{
-      GlobalVarsLogin.asMessageError = 'Ocorreu um erro ao carregar a página'
+      GlobalVars.asMessageError = 'Ocorreu um erro ao carregar a página'
       this.Router.navigate(['catalogo'])
 
       return empty()

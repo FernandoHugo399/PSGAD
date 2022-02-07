@@ -6,13 +6,9 @@ export interface ILogin {
 }
 
 export interface IProcessLogin{
-  message?: string
-  token?: string
-  headers?: string
-  status?: number
-  ok?: boolean
-  error?: string
-  statusText?: string
+  message: string
+  token: string
+  error: string
 }
 
 export interface ILoginService {
@@ -20,10 +16,4 @@ export interface ILoginService {
   LoginSuccessful: (res: IProcessLogin) => void;
   LoginFailed: (res: IProcessLogin, user: ILogin) => void;
   showHidePass: (btn: HTMLButtonElement, inp: HTMLInputElement) => void;
-}
-
-export default class GlobalVarsLogin {
-  public static asMessageError: string
-  public static asMessageSuccess: string
-  public static baseURL: string = 'http://localhost:3333'
 }

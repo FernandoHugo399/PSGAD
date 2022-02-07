@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import  GlobalVarsLogin  from 'src/app/pages/login/login.model';
+import GlobalVars from '../../services/global/global.model'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IOrders, IHomeService } from './home.model';
 import { Observable, tap, catchError, empty } from 'rxjs';
@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HomeService implements IHomeService{
-  baseURL = GlobalVarsLogin.baseURL
+  baseURL = GlobalVars.baseURL
 
   constructor(private http: HttpClient, private Router: Router) { }
 
@@ -60,7 +60,7 @@ export class HomeService implements IHomeService{
         }
       }
     })).pipe(catchError((err)=>{
-      GlobalVarsLogin.asMessageError = 'Ocorreu um erro interno'
+      GlobalVars.asMessageError = 'Ocorreu um erro interno'
       this.Router.navigate(['login'])
       return empty()
     }))

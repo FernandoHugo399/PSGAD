@@ -3,7 +3,7 @@ import { LoginService } from './login.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ILogin, IProcessLogin} from './login.model';
 import { map, catchError, empty } from 'rxjs';
-import GlobalVarsLogin from './login.model';
+import GlobalVars from '../../services/global/global.model'
 
 @Component({
   selector: 'app-login',
@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
     password: ''
   }
 
-  public errorMessage: string | undefined = GlobalVarsLogin.asMessageError;
+  public errorMessage: string | undefined = GlobalVars.asMessageError;
 
   constructor(private LoginService: LoginService, private Router: Router) {  }
 
   ngOnInit(): void {
-    GlobalVarsLogin.asMessageError = ''
+    GlobalVars.asMessageError = ''
   }
 
   showHidePass(): void{

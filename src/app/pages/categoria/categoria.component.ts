@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { catchError, empty } from 'rxjs';
 import { CategoriaService } from './categoria.service';
-import  GlobalVarsLogin  from 'src/app/pages/login/login.model';
+import GlobalVars from '../../services/global/global.model'
 import { Component, OnInit } from '@angular/core';
 import { ICategoria } from './categoria.model';
 
@@ -14,20 +14,20 @@ export class CategoriaComponent implements OnInit {
 
   public newCategory: string
   public categorias: ICategoria
-  public errorMessage = GlobalVarsLogin.asMessageError
-  public successMessage = GlobalVarsLogin.asMessageSuccess
+  public errorMessage = GlobalVars.asMessageError
+  public successMessage = GlobalVars.asMessageSuccess
 
   constructor(private CategoriaService: CategoriaService, private Router: Router) { }
 
   ngOnInit(): void {
-    GlobalVarsLogin.asMessageError = ''
-    GlobalVarsLogin.asMessageSuccess = ''
+    GlobalVars.asMessageError = ''
+    GlobalVars.asMessageSuccess = ''
     this.CategoriaService.getCategory().subscribe((res)=>{
       if(res.error){
         this.errorMessage = 'Ocorreu um erro ao listar as categorias'
 
       }else if (res.authError){
-        GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+        GlobalVars.asMessageError = 'Sua sessão expirou'
         this.Router.navigate(['login'])
 
       } else {
@@ -48,7 +48,7 @@ export class CategoriaComponent implements OnInit {
         this.newCategory = ''
 
       } else if (res.authError){
-        GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+        GlobalVars.asMessageError = 'Sua sessão expirou'
         this.Router.navigate(['login'])
 
       } else {
@@ -62,7 +62,7 @@ export class CategoriaComponent implements OnInit {
             this.errorMessage = 'Ocorreu um erro ao listar as categorias'
 
           } else if (res.authError){
-            GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+            GlobalVars.asMessageError = 'Sua sessão expirou'
             this.Router.navigate(['login'])
 
           } else {
@@ -86,7 +86,7 @@ export class CategoriaComponent implements OnInit {
       this.errorMessage = res.message
 
     } else if (res.authError){
-      GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+      GlobalVars.asMessageError = 'Sua sessão expirou'
       this.Router.navigate(['login'])
 
     } else {
@@ -99,7 +99,7 @@ export class CategoriaComponent implements OnInit {
           this.errorMessage = 'Ocorreu um erro ao listar as categorias'
 
         }else if (res.authError){
-          GlobalVarsLogin.asMessageError = 'Sua sessão expirou'
+          GlobalVars.asMessageError = 'Sua sessão expirou'
           this.Router.navigate(['login'])
 
         } else {
