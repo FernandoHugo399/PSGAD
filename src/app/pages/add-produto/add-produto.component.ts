@@ -1,5 +1,5 @@
+import { IAllCategory, IProduct } from './../../services/global/global.model';
 import { Router } from '@angular/router';
-import { ICategoria, IProduct } from './add-produto.model';
 import { AddProdutoService } from './add-produto.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import GlobalVars from '../../services/global/global.model'
@@ -16,7 +16,7 @@ export class AddProdutoComponent implements OnInit {
   constructor(private AddProdutoService: AddProdutoService, private router: Router) { }
 
   public errorMessage = GlobalVars.asMessageError;
-  public categories: ICategoria;
+  public categories: IAllCategory;
   public Product: IProduct = {
     nome: '',
     preco: '',

@@ -3,7 +3,7 @@ import { catchError, empty } from 'rxjs';
 import { CategoriaService } from './categoria.service';
 import GlobalVars from '../../services/global/global.model'
 import { Component, OnInit } from '@angular/core';
-import { ICategoria } from './categoria.model';
+import { IAllCategory } from '../../services/global/global.model';
 
 @Component({
   selector: 'app-categoria',
@@ -13,7 +13,7 @@ import { ICategoria } from './categoria.model';
 export class CategoriaComponent implements OnInit {
 
   public newCategory: string
-  public categorias: ICategoria
+  public categories: IAllCategory
   public errorMessage = GlobalVars.asMessageError
   public successMessage = GlobalVars.asMessageSuccess
 
@@ -31,7 +31,7 @@ export class CategoriaComponent implements OnInit {
         this.Router.navigate(['login'])
 
       } else {
-        this.categorias = res
+        this.categories = res
       }
     })
   }
@@ -66,7 +66,7 @@ export class CategoriaComponent implements OnInit {
             this.Router.navigate(['login'])
 
           } else {
-            this.categorias = res
+            this.categories = res
           }
         })
       }
@@ -103,7 +103,7 @@ export class CategoriaComponent implements OnInit {
           this.Router.navigate(['login'])
 
         } else {
-          this.categorias = res
+          this.categories = res
         }
       })
     }

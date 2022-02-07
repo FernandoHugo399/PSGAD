@@ -1,24 +1,9 @@
+import { IAllCategory } from './../../services/global/global.model';
 import { Observable } from 'rxjs';
-
-export interface ICategoria{
-  length: string
-  categories:{
-    id_categoria: number
-    nome: string
-  }[]
-  error: string
-  message: string
-  authError?: string
-}
-
-export interface IRequest{
-  error?: string
-  message?: string
-  authError?: string
-}
+import { IRequest } from 'src/app/services/global/global.model';
 
 export interface ICategoriaService{
-  getCategory: ()=> Observable<ICategoria>;
+  getCategory: ()=> Observable<IAllCategory>;
   createCategory: (nome: string)=> Observable<IRequest>;
   deleteCategory: (id: number)=> Observable<IRequest>
 }

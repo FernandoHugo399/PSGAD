@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
-import { Product } from './catalogo.model';
-import GlobalVars from '../../services/global/global.model'
+import GlobalVars, { IAllValidProduct } from '../../services/global/global.model'
 import { CatalogoService } from './catalogo.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class CatalogoComponent implements OnInit {
   public errorMessage = GlobalVars.asMessageError
   public successMessage = GlobalVars.asMessageSuccess
-  public products: Product
+  public products: IAllValidProduct
   constructor(private CatalogoService: CatalogoService, private router: Router) { }
 
   ngOnInit(): void {

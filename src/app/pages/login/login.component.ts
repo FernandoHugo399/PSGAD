@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ILogin, IProcessLogin} from './login.model';
+import { IProcessLogin} from './login.model';
+import { IUser } from "src/app/services/global/global.model";
 import { map, catchError, empty } from 'rxjs';
 import GlobalVars from '../../services/global/global.model'
 
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('buttonShowHide') buttonShowHide: { nativeElement:  HTMLButtonElement; };
   @ViewChild('inputPassword') inputPassword:  { nativeElement:  HTMLInputElement; };
 
-  user: ILogin = {
+  user: IUser = {
     email: '',
     password: ''
   }

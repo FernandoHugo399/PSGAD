@@ -1,32 +1,11 @@
+import { IAllCategory, IProduct } from './../../services/global/global.model';
 import { Observable } from 'rxjs';
+import { IRequest } from 'src/app/services/global/global.model';
+
 export interface IAddProdutoService{
   readURL: (archive: Event , preImage: HTMLImageElement, product: IProduct) => void;
   clearPreview: (img: HTMLImageElement, inp: HTMLInputElement,  product: IProduct) => void;
-  getCategorias: ()=> Observable<ICategoria>;
+  getCategorias: ()=> Observable<IAllCategory>;
   createProduct: (product: IProduct)=> Observable<IRequest>;
 }
 
-export interface IProduct {
-  nome?: string
-  preco?: string
-  categoria?: string
-  descricao?: string
-  file?: Blob
-}
-
-export interface IRequest{
-  error?: string
-  message?: string
-  authError?: string
-}
-
-export interface ICategoria{
-  length: string
-  categories:{
-    id_categoria: number
-    nome: string
-  }[]
-  error: string
-  message: string
-  authError?: string
-}

@@ -1,20 +1,7 @@
 
 import { Observable } from 'rxjs';
-export interface IOrders {
-  length: number
-  pedidos: {
-    id_pedido: number,
-    nome: string,
-    data_pedido: string,
-    valor_total: number,
-    status: string,
-    formattedTime: string
-  }[],
-  error: string
-  message: string
-  authError: string
-}
+import { IPendingOrders } from 'src/app/services/global/global.model';
 
 export interface IHomeService {
-  pendingOrders: ()=> Observable<IOrders>
+  pendingOrders: ()=> Observable<IPendingOrders>
 }

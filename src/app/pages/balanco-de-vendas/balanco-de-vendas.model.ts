@@ -1,4 +1,6 @@
+import { ICompletedOrders } from './../../services/global/global.model';
 import { Observable } from 'rxjs';
+
 export interface ChartData{
   mes: string
   mesCount: number
@@ -14,26 +16,10 @@ export interface ChartData{
   }[]
 }
 
-export interface OrderPedido{
-  length: number
-  pedidos: {
-    id_pedido: number
-    nome_cliente: string
-    valor_total_pedido: number
-    produto: string
-    preco_unitario: number
-    quantidade: number
-    data_pedido: string
-  }[]
-  authError: string
-  error: string
-  message: string
-}
-
 
 export interface IBalancoDeVendasService{
-  createGraphic(): Observable<OrderPedido>
-  valuesOfGraphic(order: OrderPedido): void
+  createGraphic(): Observable<ICompletedOrders>
+  valuesOfGraphic(order: ICompletedOrders): void
   previousAndCorrentMonthOrders(): void
   percentageOfOrders(porcentVendas: number, vendaTotaisMesAtual: number, vendaTotaisMesAnterior: number): void
   productWithMoreOrdersInMonth(): void

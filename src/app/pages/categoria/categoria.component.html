@@ -12,8 +12,8 @@
 
   <div class="list"><h2>Tags</h2></div>
 
-  <div class="list-categorias" *ngIf="categorias; else noCategories">
-    <div class="categoria" *ngFor="let cat of categorias.categories">
+  <div class="list-categorias" *ngIf="categories; else noCategories">
+    <div class="categoria" *ngFor="let cat of categories.categories">
         <div class="cat-nome">{{cat.nome}}</div>
         <div class="delete"><a (click)="deleteCategory(cat.id_categoria)">
           <svg style="width:24px;height:24px" viewBox="0 0 24 24">

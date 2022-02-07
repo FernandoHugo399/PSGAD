@@ -2,9 +2,9 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap, catchError, empty } from 'rxjs';
-import { IBalancoDeVendasService, OrderPedido, ChartData } from './balanco-de-vendas.model';
+import { IBalancoDeVendasService, ChartData } from './balanco-de-vendas.model';
 import { ChartJsData } from './chart.data';
-import GlobalVars from '../../services/global/global.model'
+import GlobalVars, { ICompletedOrders } from '../../services/global/global.model'
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +40,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
 
 
-  valuesOfGraphic(order: OrderPedido): void {
+  valuesOfGraphic(order: ICompletedOrders): void {
     for(var i = 0; i < order.length; i++){
       let date = ((Date.now() - Date.parse(order.pedidos[i].data_pedido)) / (1000 * 60 * 60 * 24 * 30))
       let month = new Date((Date.parse(order.pedidos[i].data_pedido))).getMonth()
@@ -137,9 +137,9 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
 
 
-  createGraphic(): Observable<OrderPedido>{
+  createGraphic(): Observable<ICompletedOrders>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
-    return this.http.get<OrderPedido>(`${this.baseURL}/order/completed`, {headers: headers}).pipe(tap((res)=>{
+    return this.http.get<ICompletedOrders>(`${this.baseURL}/order/completed`, {headers: headers}).pipe(tap((res)=>{
 
       this.config.data.datasets[0].data = []
       this.productAndTheirSales = []

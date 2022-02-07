@@ -1,7 +1,10 @@
+import { IAllCategory, IProduct } from './../../services/global/global.model';
 import { Router } from '@angular/router';
 import { Observable, catchError, empty } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IAddProdutoService, ICategoria, IRequest, IProduct } from './add-produto.model';
+import { IAddProdutoService } from './add-produto.model';
+
+import { IRequest } from '../../services/global/global.model';
 import { Injectable } from '@angular/core';
 import GlobalVars from '../../services/global/global.model'
 
@@ -31,9 +34,9 @@ export class AddProdutoService implements IAddProdutoService {
     product.file = undefined
   }
 
-  getCategorias(): Observable<ICategoria>{
+  getCategorias(): Observable<IAllCategory>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
-    return this.http.get<ICategoria>(`${this.baseURL}/categories`, {headers: headers}).pipe(catchError((err)=>{
+    return this.http.get<IAllCategory>(`${this.baseURL}/categories`, {headers: headers}).pipe(catchError((err)=>{
       GlobalVars.asMessageError = 'Ocorreu um erro ao carregar a página'
       this.Router.navigate(['catalogo'])
 

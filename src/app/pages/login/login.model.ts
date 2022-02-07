@@ -1,9 +1,5 @@
 import { Observable } from "rxjs";
-
-export interface ILogin {
-  email: string,
-  password: string,
-}
+import { IUser } from "src/app/services/global/global.model";
 
 export interface IProcessLogin{
   message: string
@@ -12,8 +8,8 @@ export interface IProcessLogin{
 }
 
 export interface ILoginService {
-  login: (user: ILogin) => Observable<IProcessLogin>;
+  login: (user: IUser) => Observable<IProcessLogin>;
   LoginSuccessful: (res: IProcessLogin) => void;
-  LoginFailed: (res: IProcessLogin, user: ILogin) => void;
+  LoginFailed: (res: IProcessLogin, user: IUser) => void;
   showHidePass: (btn: HTMLButtonElement, inp: HTMLInputElement) => void;
 }

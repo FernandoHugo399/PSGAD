@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import GlobalVars from '../../services/global/global.model'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IOrders, IHomeService } from './home.model';
+import { IHomeService } from './home.model';
+import { IPendingOrders } from '../../services/global/global.model';
 import { Observable, tap, catchError, empty } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -13,9 +14,9 @@ export class HomeService implements IHomeService{
 
   constructor(private http: HttpClient, private Router: Router) { }
 
-  pendingOrders(): Observable<IOrders> {
+  pendingOrders(): Observable<IPendingOrders> {
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
-    return this.http.get<IOrders>(`${this.baseURL}/order/pending`, {headers: headers}).pipe(tap((resul)=>{
+    return this.http.get<IPendingOrders>(`${this.baseURL}/order/pending`, {headers: headers}).pipe(tap((resul)=>{
       let dados = resul
 
       for (let i = 0; i < dados.length; i++){

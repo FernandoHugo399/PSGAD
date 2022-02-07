@@ -1,5 +1,6 @@
 import GlobalVars from '../../services/global/global.model'
-import { IProcessLogin, ILogin, ILoginService } from './login.model';
+import { IProcessLogin, ILoginService } from './login.model';
+import { IUser } from "src/app/services/global/global.model";
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +15,7 @@ export class LoginService implements ILoginService {
   constructor(private http: HttpClient, private Router: Router) { }
 
 
-  login(user: ILogin): Observable<IProcessLogin>{
+  login(user: IUser): Observable<IProcessLogin>{
     return this.http.post<IProcessLogin>(`${this.baseUrl}/auth/login`, user)
   }
 
@@ -23,7 +24,7 @@ export class LoginService implements ILoginService {
     this.Router.navigate([''])
   }
 
-  LoginFailed(res: IProcessLogin, user: ILogin): void {
+  LoginFailed(res: IProcessLogin, user: IUser): void {
     user.email = ''
     user.password = ''
   }

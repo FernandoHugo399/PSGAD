@@ -1,4 +1,6 @@
-import { ICategoria, ICategoriaService, IRequest } from './categoria.model';
+import { ICategoriaService } from './categoria.model';
+import { IAllCategory } from '../../services/global/global.model';
+import { IRequest } from '../../services/global/global.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, empty } from 'rxjs';
 import { Router } from '@angular/router';
@@ -12,9 +14,9 @@ export class CategoriaService implements ICategoriaService{
   baseURL = GlobalVars.baseURL
   constructor(private Router:Router, private http: HttpClient) { }
 
-  getCategory(): Observable<ICategoria>{
+  getCategory(): Observable<IAllCategory>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
-    return this.http.get<ICategoria>(`${this.baseURL}/categories`, {headers: headers}).pipe(catchError((err)=>{
+    return this.http.get<IAllCategory>(`${this.baseURL}/categories`, {headers: headers}).pipe(catchError((err)=>{
       GlobalVars.asMessageError = 'Ocorreu um erro ao carregar a página'
       this.Router.navigate(['catalogo'])
 

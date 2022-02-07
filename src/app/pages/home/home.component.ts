@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { IOrders } from './home.model';
+import { IPendingOrders } from '../../services/global/global.model';
 import { HomeService } from './home.service';
 import { Component, OnInit } from '@angular/core';
 import GlobalVars from '../../services/global/global.model'
@@ -11,7 +11,7 @@ import GlobalVars from '../../services/global/global.model'
 })
 export class HomeComponent implements OnInit {
   public errorMessage = GlobalVars.asMessageError
-  orders: IOrders;
+  orders: IPendingOrders;
 
   constructor(private HomeService: HomeService, private Router: Router) { }
 

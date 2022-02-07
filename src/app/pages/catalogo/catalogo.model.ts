@@ -1,19 +1,6 @@
 import { Observable } from 'rxjs';
-export interface Product{
-  length?: number
-  products?:{
-    id_produto: number
-    nome: string
-    preco: number
-    descricao: string
-    categoria: string
-    image: string
-  }[]
-  error?: string
-  message?: string
-  authError?: string
-}
+import { IAllValidProduct } from 'src/app/services/global/global.model';
 
 export interface ICatalogoService{
-  allProducts: ()=> Observable<Product>
+  allProducts: ()=> Observable<IAllValidProduct>
 }
