@@ -1,12 +1,12 @@
-import { IAllCategory, IProduct } from './../../services/global/global.model';
 import { Router } from '@angular/router';
 import { Observable, catchError, empty } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IAddProdutoService } from './add-produto.model';
-
 import { IRequest } from '../../services/global/global.model';
 import { Injectable } from '@angular/core';
 import GlobalVars from '../../services/global/global.model'
+import { IProduct } from 'src/app/services/global/products.model';
+import { IAllCategory } from 'src/app/services/global/categories.model';
 
 @Injectable({
   providedIn: 'root'

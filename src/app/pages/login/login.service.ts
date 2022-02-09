@@ -1,10 +1,10 @@
 import GlobalVars from '../../services/global/global.model'
 import { IProcessLogin, ILoginService } from './login.model';
-import { IUser } from "src/app/services/global/global.model";
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { IUser } from 'src/app/services/global/user.model';
 
 @Injectable({
   providedIn: 'root'

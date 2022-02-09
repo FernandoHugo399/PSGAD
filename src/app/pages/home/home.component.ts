@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
-import { IPendingOrders } from '../../services/global/global.model';
 import { HomeService } from './home.service';
 import { Component, OnInit } from '@angular/core';
 import GlobalVars from '../../services/global/global.model'
+import { IPendingOrders } from 'src/app/services/global/orders.model';
 
 @Component({
   selector: 'app-home',

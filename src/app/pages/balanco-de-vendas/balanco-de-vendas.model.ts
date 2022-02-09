@@ -1,5 +1,6 @@
-import { ICompletedOrders } from './../../services/global/global.model';
+
 import { Observable } from 'rxjs';
+import { ICompletedOrders } from 'src/app/services/global/orders.model';
 
 export interface ChartData{
   mes: string

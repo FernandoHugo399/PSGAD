@@ -3,32 +3,31 @@
   <div class="title"><h2>Balanço de Vendas</h2></div>
 
   <div class="container-graphic">
-      <div class="graphic">
-          <canvas #myChart></canvas>
-      </div>
+    <div class="graphic">
+      <canvas #myChart></canvas>
+    </div> <!-- graphic -->
 
-      <div class="statistic">
-          <h2><strong *ngIf="displayMain">R$ {{currentMonthTotal}}</strong></h2>
-          <p>Foi a renda total do mês atual.</p>
-      </div>
-  </div>
+    <div class="statistic">
+      <h2><strong *ngIf="displayMain">R$ {{currentMonthTotal}}</strong></h2>
+      <p>Foi a renda total do mês atual.</p>
+    </div> <!-- statistic -->
+  </div>  <!-- container-graphic -->
 
   <div class="container-statistic">
-      <div class="item-statistic">
-          <h3><strong *ngIf="displayMain">{{currentMonthTotalSales}}</strong></h3>
-          <p>vendas feitas nesse mês.</p>
-      </div>
+    <div class="item-statistic">
+      <h3><strong *ngIf="displayMain">{{currentMonthTotalSales}}</strong></h3>
+      <p>vendas feitas nesse mês.</p>
+    </div> <!-- item-statistic -->
 
-      <div class="item-statistic">
-          <h3><strong *ngIf="displayMain">{{percentageSales}}%</strong></h3>
-          <p>{{deltaPercentageSales}} à quantidade de pedidos feitos ao mês anterior.</p>
-      </div>
+    <div class="item-statistic">
+      <h3><strong *ngIf="displayMain">{{percentageSales}}%</strong></h3>
+      <p>{{deltaPercentageSales}} à quantidade de pedidos feitos ao mês anterior.</p>
+    </div> <!-- item-statistic -->
 
-      <div class="item-statistic">
-          <h3><strong *ngIf="displayMain">{{percentageProductMoreSales}}%</strong></h3>
-          <p>do total de vendas, foi do produto <strong>{{productWithMoreSales}}</strong>.</p>
-      </div>
-
+    <div class="item-statistic">
+      <h3><strong *ngIf="displayMain">{{percentageProductMoreSales}}%</strong></h3>
+      <p>do total de vendas, foi do produto <strong>{{productWithMoreSales}}</strong>.</p>
+    </div> <!-- item-statistic -->
   </div>
 </main>
 

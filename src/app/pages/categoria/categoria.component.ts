@@ -3,7 +3,7 @@ import { catchError, empty } from 'rxjs';
 import { CategoriaService } from './categoria.service';
 import GlobalVars from '../../services/global/global.model'
 import { Component, OnInit } from '@angular/core';
-import { IAllCategory } from '../../services/global/global.model';
+import { IAllCategory } from 'src/app/services/global/categories.model';
 
 @Component({
   selector: 'app-categoria',

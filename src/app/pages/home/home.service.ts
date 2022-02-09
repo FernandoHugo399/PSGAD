@@ -2,9 +2,9 @@ import { Router } from '@angular/router';
 import GlobalVars from '../../services/global/global.model'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IHomeService } from './home.model';
-import { IPendingOrders } from '../../services/global/global.model';
 import { Observable, tap, catchError, empty } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { IPendingOrders } from 'src/app/services/global/orders.model';
 
 @Injectable({
   providedIn: 'root'

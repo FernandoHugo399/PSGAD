@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable, tap, catchError, empty } from 'rxjs';
 import { IBalancoDeVendasService, ChartData } from './balanco-de-vendas.model';
 import { ChartJsData } from './chart.data';
-import GlobalVars, { ICompletedOrders } from '../../services/global/global.model'
+import GlobalVars from '../../services/global/global.model'
+import { ICompletedOrders } from 'src/app/services/global/orders.model';
 
 @Injectable({
   providedIn: 'root'

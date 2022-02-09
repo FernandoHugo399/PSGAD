@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
-import GlobalVars, { IAllValidProduct } from '../../services/global/global.model'
+import GlobalVars from '../../services/global/global.model'
 import { CatalogoService } from './catalogo.service';
 import { Component, OnInit } from '@angular/core';
+import { IAllValidProduct } from 'src/app/services/global/products.model';
 
 @Component({
   selector: 'app-catalogo',

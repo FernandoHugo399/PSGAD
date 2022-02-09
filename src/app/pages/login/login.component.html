@@ -1,18 +1,18 @@
 <div class="bg-login">
-<div class="login-center">
+  <div class="login-center">
     <div class="img-logo"><img src="assets/images/logo.png" alt="logo"></div>
     <div class="logo-name"><img src="assets/images/logo-name.png" alt="psgad"></div>
     <p>Admin</p>
 
     <form>
-        <h2>Para continuar, faça seu login</h2>
-        <div class="errorMessage" *ngIf="errorMessage">{{errorMessage}}</div>
-        <input type="text" name="email" class="input" [(ngModel)]="user.email" placeholder="Login">
-        <div class="senha"><input type="password" name="password"  [(ngModel)]="user.password" class="input" placeholder="Senha" #inputPassword>
-            <button id="mostrar" type="button" (click)="showHidePass()" #buttonShowHide>Mostrar</button>
-        </div>
-        <a routerLink="/recovery">Esqueceu a senha?</a>
-        <input type="submit" value="Entrar" (click)="loginSubmit()">
+      <h2>Para continuar, faça seu login</h2>
+      <div class="errorMessage" *ngIf="errorMessage">{{errorMessage}}</div>
+      <input type="text" name="email" class="input" [(ngModel)]="user.email" placeholder="Login">
+      <div class="senha"><input type="password" name="password"  [(ngModel)]="user.password" class="input" placeholder="Senha" #inputPassword>
+        <button id="mostrar" type="button" (click)="showHidePass()" #buttonShowHide>Mostrar</button>
+      </div>
+      <a routerLink="/recovery">Esqueceu a senha?</a>
+      <input type="submit" value="Entrar" (click)="loginSubmit()">
     </form>
-</div>
-</div>
+  </div> <!-- login-center -->
+</div> <!-- bg-login -->

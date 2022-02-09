@@ -1,8 +1,9 @@
-import { IAllCategory, IProduct } from './../../services/global/global.model';
 import { Router } from '@angular/router';
 import { AddProdutoService } from './add-produto.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import GlobalVars from '../../services/global/global.model'
+import { IAllCategory } from 'src/app/services/global/categories.model';
+import { IProduct } from 'src/app/services/global/products.model';
 
 @Component({
   selector: 'app-add-produto',

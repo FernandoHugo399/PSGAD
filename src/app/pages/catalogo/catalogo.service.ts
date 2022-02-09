@@ -1,10 +1,10 @@
 import { Router } from '@angular/router';
 import { ICatalogoService } from './catalogo.model';
-
 import { Observable, catchError, empty } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import GlobalVars, { IAllValidProduct } from '../../services/global/global.model'
+import GlobalVars from '../../services/global/global.model'
+import { IAllValidProduct } from 'src/app/services/global/products.model';
 
 @Injectable({
   providedIn: 'root'

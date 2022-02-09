@@ -1,11 +1,11 @@
 import { ICategoriaService } from './categoria.model';
-import { IAllCategory } from '../../services/global/global.model';
 import { IRequest } from '../../services/global/global.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, empty } from 'rxjs';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import GlobalVars from '../../services/global/global.model'
+import { IAllCategory } from 'src/app/services/global/categories.model';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
-import { IAllValidProduct } from 'src/app/services/global/global.model';
+import { IAllValidProduct } from 'src/app/services/global/products.model';
+
 
 export interface ICatalogoService{
   allProducts: ()=> Observable<IAllValidProduct>

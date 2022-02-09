@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { IUser } from "src/app/services/global/global.model";
+import { IUser } from 'src/app/services/global/user.model';
 
 export interface IProcessLogin{
   message: string
