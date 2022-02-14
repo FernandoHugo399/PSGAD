@@ -8,16 +8,16 @@
       <div class="successMessage" *ngIf="successMessage">{{successMessage}}</div>
       <div class="lista-produtos" *ngIf='products; else notProducts'>
         <div class="produto" *ngFor="let product of products.products">
-          <div class="img-produto"><img src="https://storage.googleapis.com/quantum-ether-335121.appspot.com/{{product.image}}" alt="{{product.nome}}"></div>
+          <div class="img-produto"><img src="https://storage.googleapis.com/quantum-ether-335121.appspot.com/{{product.image}}" alt="{{product.name}}"></div>
 
             <div class="nome-preco">
-              <div class="nome"><h3>{{product.nome}}</h3></div>
-              <div class="preco">R$ {{product.preco}}</div>
+              <div class="nome"><h3>{{product.name}}</h3></div>
+              <div class="preco">R$ {{product.price}}</div>
             </div> <!-- nome-preco -->
 
             <div class="categoria-avaliacao">
-              <div class="categoria"><i class="material-icons">label</i>{{product.categoria}}</div>
-              <div class="editar"><a routerLink="editproduto/{{product.id_produto}}"><i class="material-icons">edit</i><span>Editar</span></a></div>
+              <div class="categoria"><i class="material-icons">label</i>{{product.category}}</div>
+              <div class="editar"><a routerLink="editproduto/{{product.id_product}}"><i class="material-icons">edit</i><span>Editar</span></a></div>
             </div> <!-- categoria-avaliacao -->
 
           </div> <!-- produto -->

@@ -19,10 +19,10 @@ export class AddProdutoComponent implements OnInit {
   public errorMessage = GlobalVars.asMessageError;
   public categories: IAllCategory;
   public Product: IProduct = {
-    nome: '',
-    preco: '',
-    categoria: '',
-    descricao: '',
+    name: '',
+    price: '',
+    category: '',
+    description: '',
     file: undefined
   }
 
@@ -54,7 +54,7 @@ export class AddProdutoComponent implements OnInit {
   }
 
   changeCategorie(event: Event){
-    this.Product.categoria = (event.target as HTMLInputElement).value
+    this.Product.category = (event.target as HTMLInputElement).value
   }
 
   createProduct(e:Event){
@@ -62,10 +62,10 @@ export class AddProdutoComponent implements OnInit {
     this.AddProdutoService.createProduct(this.Product).subscribe((res)=>{
       if(res.error){
         this.errorMessage = res.message
-        this.Product.nome = ''
-        this.Product.preco = '',
-        this.Product.categoria = '',
-        this.Product.descricao = '',
+        this.Product.name = ''
+        this.Product.price = '',
+        this.Product.category = '',
+        this.Product.description = '',
         this.clearPreview()
 
       }else if (res.authError){

@@ -1,10 +1,8 @@
-export interface IAllCategory{
+import { IRequest } from './global.model';
+export interface IAllCategory extends IRequest{
   length: string
   categories:{
-    id_categoria: number
-    nome: string
+    idCategory: number
+    name: string
   }[]
-  error: string
-  message: string
-  authError: string
 }

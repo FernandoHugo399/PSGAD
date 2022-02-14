@@ -7,40 +7,40 @@ for(var i = 0; i < 12; i++){
 
   switch(mesAtual){
     case 0:
-      month.push({mes: 'Janeiro', mesCount: 0, vendas: [], valorTotal: 0})
+      month.push({month: 'Janeiro', monthCount: 0, orders: [], total_value: 0})
       break
     case 1:
-      month.push({mes: 'Fevereiro', mesCount: 1, vendas: [], valorTotal: 0})
+      month.push({month: 'Fevereiro', monthCount: 1, orders: [], total_value: 0})
       break
     case 2:
-      month.push({mes: 'Março', mesCount: 2, vendas: [], valorTotal: 0})
+      month.push({month: 'Março', monthCount: 2, orders: [], total_value: 0})
       break
     case 3:
-      month.push({mes: 'Abril', mesCount: 3, vendas: [], valorTotal: 0})
+      month.push({month: 'Abril', monthCount: 3, orders: [], total_value: 0})
       break
     case 4:
-      month.push({mes: 'Maio', mesCount: 4, vendas: [], valorTotal: 0})
+      month.push({month: 'Maio', monthCount: 4, orders: [], total_value: 0})
       break
     case 5:
-        month.push({mes: 'Junho', mesCount: 5, vendas: [], valorTotal: 0})
+        month.push({month: 'Junho', monthCount: 5, orders: [], total_value: 0})
         break
     case 6:
-      month.push({mes: 'Julho', mesCount: 6, vendas: [], valorTotal: 0})
+      month.push({month: 'Julho', monthCount: 6, orders: [], total_value: 0})
       break
     case 7:
-      month.push({mes: 'Agosto', mesCount: 7, vendas: [], valorTotal: 0})
+      month.push({month: 'Agosto', monthCount: 7, orders: [], total_value: 0})
       break
     case 8:
-      month.push({mes: 'Setembro', mesCount: 8, vendas: [], valorTotal: 0})
+      month.push({month: 'Setembro', monthCount: 8, orders: [], total_value: 0})
       break
     case 9:
-      month.push({mes: 'Outubro', mesCount: 9, vendas: [], valorTotal: 0})
+      month.push({month: 'Outubro', monthCount: 9, orders: [], total_value: 0})
       break
     case 10:
-      month.push({mes: 'Novembro', mesCount: 10, vendas: [], valorTotal: 0})
+      month.push({month: 'Novembro', monthCount: 10, orders: [], total_value: 0})
       break
     case 11:
-      month.push({mes: 'Dezembro', mesCount: 11, vendas: [], valorTotal: 0})
+      month.push({month: 'Dezembro', monthCount: 11, orders: [], total_value: 0})
       break
     }
 
@@ -54,7 +54,7 @@ month.reverse()
 const labels: string[] = []
 
 month.map((e: ChartData)=>{
-    labels.push(e.mes)
+    labels.push(e.month)
 })
 
 export class ChartJsData{

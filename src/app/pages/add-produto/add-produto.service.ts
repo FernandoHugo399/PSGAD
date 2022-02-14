@@ -48,10 +48,10 @@ export class AddProdutoService implements IAddProdutoService {
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
     const formData = new FormData()
     formData.append('file', product.file)
-    formData.append('categoria', product.categoria)
-    formData.append('descricao', product.descricao)
-    formData.append('nome', product.nome)
-    formData.append('preco', product.preco)
+    formData.append('categoria', product.category)
+    formData.append('descricao', product.description)
+    formData.append('nome', product.name)
+    formData.append('preco', product.price)
 
     return this.http.post<IRequest>(`${this.baseURL}/product`, formData, {headers: headers}).pipe(catchError((err)=>{
       GlobalVars.asMessageError = 'Ocorreu um erro ao criar o produto'

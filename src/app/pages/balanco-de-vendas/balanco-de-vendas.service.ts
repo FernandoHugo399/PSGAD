@@ -5,7 +5,7 @@ import { Observable, tap, catchError, empty } from 'rxjs';
 import { IBalancoDeVendasService, ChartData } from './balanco-de-vendas.model';
 import { ChartJsData } from './chart.data';
 import GlobalVars from '../../services/global/global.model'
-import { ICompletedOrders } from 'src/app/services/global/orders.model';
+import { IAllCompletedOrders } from 'src/app/services/global/orders.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,24 +41,24 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
 
 
-  valuesOfGraphic(order: ICompletedOrders): void {
+  valuesOfGraphic(order: IAllCompletedOrders): void {
     for(var i = 0; i < order.length; i++){
-      let date = ((Date.now() - Date.parse(order.pedidos[i].data_pedido)) / (1000 * 60 * 60 * 24 * 30))
-      let month = new Date((Date.parse(order.pedidos[i].data_pedido))).getMonth()
-      let year = new Date((Date.parse(order.pedidos[i].data_pedido))).getFullYear()
+      let date = ((Date.now() - Date.parse(order.orders[i].order_date)) / (1000 * 60 * 60 * 24 * 30))
+      let month = new Date((Date.parse(order.orders[i].order_date))).getMonth()
+      let year = new Date((Date.parse(order.orders[i].order_date))).getFullYear()
 
       if(date >= 0 && date < 12){
         this.months.map((Month:ChartData)=>{
-          if(Month.mesCount === month){
+          if(Month.monthCount === month){
             if(month === this.atualMonth){
               if(year === this.atualYear){
-                Month.vendas.push(order.pedidos[i])
-                Month.valorTotal += Number(order.pedidos[i].valor_total_pedido)
+                Month.orders.push(order.orders[i])
+                Month.total_value += Number(order.orders[i].total_order)
               }
 
             } else {
-              Month.vendas.push(order.pedidos[i])
-              Month.valorTotal += Number(order.pedidos[i].valor_total_pedido)
+              Month.orders.push(order.orders[i])
+              Month.total_value += Number(order.orders[i].total_order)
             }
 
           }
@@ -71,23 +71,23 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
   previousAndCorrentMonthOrders(): void{
     this.months.map((month)=>{
-      if(month.mesCount === this.atualMonth){
-        this.previousMonthTotalSales = month.vendas.map((product)=>{
-          return product.produto
+      if(month.monthCount === this.atualMonth){
+        this.previousMonthTotalSales = month.orders.map((product)=>{
+          return product.product
         })
-        this.currentMonthTotal = Number(month.valorTotal.toFixed(2))
-        this.currentMonthTotalSales = month.vendas.length
+        this.currentMonthTotal = Number(month.total_value.toFixed(2))
+        this.currentMonthTotalSales = month.orders.length
 
-      } if(month.mesCount === 11 && this.atualMonth === 0 ){
-        this.totalPreviousMonth = Number(month.valorTotal.toFixed(2))
-        this. totalOrderPreviousMonth = month.vendas.length
+      } if(month.monthCount === 11 && this.atualMonth === 0 ){
+        this.totalPreviousMonth = Number(month.total_value.toFixed(2))
+        this. totalOrderPreviousMonth = month.orders.length
 
-      }else if(month.mesCount === this.atualMonth - 1){
-        this.totalPreviousMonth = Number(month.valorTotal.toFixed(2))
-        this. totalOrderPreviousMonth = month.vendas.length
+      }else if(month.monthCount === this.atualMonth - 1){
+        this.totalPreviousMonth = Number(month.total_value.toFixed(2))
+        this. totalOrderPreviousMonth = month.orders.length
 
       }
-      this.config.data.datasets[0].data.push(Number(month.valorTotal.toFixed(2)))
+      this.config.data.datasets[0].data.push(Number(month.total_value.toFixed(2)))
 
     })
   }
@@ -138,15 +138,15 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
 
 
 
-  createGraphic(): Observable<ICompletedOrders>{
+  createGraphic(): Observable<IAllCompletedOrders>{
     const headers = new HttpHeaders({'Authorization': localStorage.getItem('token') || 'UNDEFINED'});
-    return this.http.get<ICompletedOrders>(`${this.baseURL}/order/completed`, {headers: headers}).pipe(tap((res)=>{
+    return this.http.get<IAllCompletedOrders>(`${this.baseURL}/order/completed`, {headers: headers}).pipe(tap((res)=>{
 
       this.config.data.datasets[0].data = []
       this.productAndTheirSales = []
       this.months.map((month)=>{
-        month.vendas = []
-        month.valorTotal = 0
+        month.orders = []
+        month.total_value= 0
       })
 
       this.valuesOfGraphic(res)
@@ -156,7 +156,6 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
       this.percentageProductMoreSalesInMonth(this.productWithMoreSales.length, this.currentMonthTotalSales)
 
     })).pipe(catchError((err)=>{
-      console.log(err)
       GlobalVars.asMessageError = 'Ocorreu um erro ao carregar a página'
       this.Router.navigate([''])
       return empty()

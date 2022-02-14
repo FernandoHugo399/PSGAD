@@ -1,26 +1,19 @@
+import { IRequest } from 'src/app/services/global/global.model';
 
 import { Observable } from 'rxjs';
-import { ICompletedOrders } from 'src/app/services/global/orders.model';
+import { IAllCompletedOrders, ICompletedOrders } from 'src/app/services/global/orders.model';
 
-export interface ChartData{
-  mes: string
-  mesCount: number
-  valorTotal: number
-  vendas: {
-    id_pedido: number
-    nome_cliente: string
-    valor_total_pedido: number
-    produto: string
-    preco_unitario: number
-    quantidade: number
-    data_pedido: string
-  }[]
+export interface ChartData extends IRequest{
+  month: string
+  monthCount: number
+  total_value: number
+  orders: ICompletedOrders[]
 }
 
 
 export interface IBalancoDeVendasService{
-  createGraphic(): Observable<ICompletedOrders>
-  valuesOfGraphic(order: ICompletedOrders): void
+  createGraphic(): Observable<IAllCompletedOrders>
+  valuesOfGraphic(order: IAllCompletedOrders): void
   previousAndCorrentMonthOrders(): void
   percentageOfOrders(porcentVendas: number, vendaTotaisMesAtual: number, vendaTotaisMesAnterior: number): void
   productWithMoreOrdersInMonth(): void

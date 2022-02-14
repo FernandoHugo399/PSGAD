@@ -1,22 +1,20 @@
+import { IRequest } from './global.model';
 export interface IProduct {
-  nome: string
-  preco: string
-  categoria: string
-  descricao: string
+  name: string
+  price: string
+  category: string
+  description: string
   file: Blob
 }
 
-export interface IAllValidProduct{
-  length?: number
-  products?:{
-    id_produto: number
-    nome: string
-    preco: number
-    descricao: string
-    categoria: string
+export interface IAllValidProduct extends IRequest{
+  length: number
+  products:{
+    id_product: number
+    name: string
+    price: number
+    description: string
+    category: string
     image: string
   }[]
-  error?: string
-  message?: string
-  authError?: string
 }

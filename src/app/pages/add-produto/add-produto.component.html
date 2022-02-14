@@ -20,12 +20,12 @@
 
           <div class="w30">
             <p>Nome</p>
-            <input type="text" name="nome" maxlength="100" [(ngModel)]='Product.nome'>
+            <input type="text" name="name" maxlength="100" [(ngModel)]='Product.name'>
           </div> <!-- w30 -->
 
           <div class="w30">
             <p>Preco</p>
-            <input type="text" name="preco" [(ngModel)]='Product.preco'>
+            <input type="text" name="price" [(ngModel)]='Product.price'>
           </div> <!-- w30 -->
 
           <div class="w30">
@@ -33,9 +33,9 @@
               <div>Tag</div> <div class="new-tag"><a routerLink="/categoria"><i class="material-icons">label</i> Nova Tag</a></div>
             </div> <!-- flex-tag -->
 
-            <select name="categoria" *ngIf="categories; else noCategories" [(ngModel)]="Product.categoria" (change)="changeCategorie($event)">
+            <select name="category" *ngIf="categories; else noCategories" [(ngModel)]="Product.category" (change)="changeCategorie($event)">
                 <option value="" selected disabled>Selecione uma tag</option>
-                <option value="{{categoria.nome}}" *ngFor="let categoria of categories.categories">{{categoria.nome}}</option>
+                <option value="{{categoria.name}}" *ngFor="let categoria of categories.categories">{{categoria.name}}</option>
             </select>
 
             <ng-template #noCategories>
@@ -47,7 +47,7 @@
 
           <div class="w50">
               <p>Descrição</p>
-              <textarea name="descricao" [(ngModel)]='Product.descricao'></textarea>
+              <textarea name="description" [(ngModel)]='Product.description'></textarea>
           </div> <!-- w50 -->
 
           <div class="w30">
