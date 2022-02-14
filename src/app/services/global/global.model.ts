@@ -5,7 +5,7 @@ export default class GlobalVars {
 }
 
 export interface IRequest{
-  error?: string
-  message?: string
-  authError?: string
+  error: string
+  message: string
+  authError: string
 }

@@ -1,9 +1,8 @@
-import { IRequest } from 'src/app/services/global/global.model';
 
 import { Observable } from 'rxjs';
 import { IAllCompletedOrders, ICompletedOrders } from 'src/app/services/global/orders.model';
 
-export interface ChartData extends IRequest{
+export interface ChartData {
   month: string
   monthCount: number
   total_value: number
