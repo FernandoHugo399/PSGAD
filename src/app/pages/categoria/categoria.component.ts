@@ -80,7 +80,6 @@ export class CategoriaComponent implements OnInit {
     return empty()
 
   })).subscribe((res)=>{
-    console.log(res)
     if(res.error){
       this.successMessage = ''
       this.errorMessage = res.message

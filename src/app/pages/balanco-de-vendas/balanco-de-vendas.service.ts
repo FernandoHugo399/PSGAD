@@ -46,8 +46,7 @@ export class BalancoDeVendasService implements IBalancoDeVendasService {
       let date = ((Date.now() - Date.parse(order.orders[i].order_date)) / (1000 * 60 * 60 * 24 * 30))
       let month = new Date((Date.parse(order.orders[i].order_date))).getMonth()
       let year = new Date((Date.parse(order.orders[i].order_date))).getFullYear()
-
-      if(date >= 0 && date < 12){
+      if(date >= 0 && date < 12.2){
         this.months.map((Month:ChartData)=>{
           if(Month.monthCount === month){
             if(month === this.atualMonth){
